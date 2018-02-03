@@ -1,0 +1,41 @@
+{
+  "name": "convenient",
+  "version": "0.0.1",
+  "description": "a bunch of disparate, but convenient functions",
+  "license": "MIT",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "homepage": "https://github.com/Xananax/convenient/",
+  "author": "xananax@yelostudio.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xananax/convenient/"
+  },
+  "bugs": {
+    "url": "https://github.com/Xananax/convenient/issues"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "latest",
+    "react-dom": "latest",
+    "react": "latest",
+    "react-scripts-ts": "2.8.0",
+    "@types/react-dom": "latest",
+    "@types/react": "latest",
+    "@types/jest": "^20.0.8",
+    "@types/node": "^8.0.28"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject",
+    "compile": "tsc --moduleResolution Node --module commonjs --target es5 --outDir dist --declaration",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "keywords": [
+    "utils",
+    "typescript"
+  ]
+}
