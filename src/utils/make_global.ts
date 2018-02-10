@@ -16,4 +16,6 @@ export const get_global =
   ( root_object[ name ]
   )
 
+export const make_global = set_global
+
 export default set_global
