@@ -15,3 +15,5 @@ export const get_global =
   ( name:string ) =>
   ( root_object[ name ]
   )
+
+export default set_global
