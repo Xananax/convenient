@@ -1,6 +1,7 @@
 export * from './blank_gif'
 export * from './capitalize_word'
 export * from './clamp'
+export * from './deferred_promise'
 export * from './get_image_orientation'
 export * from './get_random_int_in_range'
 export * from './get_random_num_in_range'
