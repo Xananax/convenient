@@ -29,9 +29,9 @@ export const snap =
   , num: number
   , type: SnapType = SnapType.MID
   ): number =>
-  ( type == SnapType.MAX
+  ( type === SnapType.MAX
   ? snap_max(resolution, num)
-  : ( type == SnapType.MIN
+  : ( type === SnapType.MIN
     ? snap_min(resolution, num)
     : snap_mid(resolution, num)
     )

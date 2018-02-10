@@ -1,22 +1,22 @@
 export interface TextToken 
-  { type:'TEXT'
-  ; text:string
+  { type: 'TEXT'
+  ; text: string
   }
 
 export interface LinebreakToken
-  { type:'LINEBREAK'
+  { type: 'LINEBREAK'
   }
 
 export interface TagToken
-  { type:'TAG'
-  ; text:string
-  ; url:string
+  { type: 'TAG'
+  ; text: string
+  ; url:  string
   }
 
 export interface EmailToken
-  { type:'EMAIL'
-  ; text:string
-  ; url:string
+  { type: 'EMAIL'
+  ; text: string
+  ; url:  string
   }
 
 export type Token =
@@ -54,8 +54,19 @@ export const makeToken =
  * @param tokenArr optionally, an array to append to
  */
 export const tokenize = 
-  ( text: string, tokenArr:({type:'LINEBREAK'}|{type:'TEXT',text:string}|{type:'TAG',text:string,url:string})[] = [] ) =>
-  ( ( text||'')
+  ( text: string
+  , tokenArr: 
+    ( { type: 'LINEBREAK' }
+    | { type: 'TEXT'
+      , text: string
+      }
+    | { type: 'TAG'
+      , text: string
+      , url: string
+      }
+    )[] = [] 
+  ) =>
+  ( ( text || '')
     .replace(/ +/, '')
     .split(/\n/)
     .reduce

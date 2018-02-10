@@ -8,9 +8,9 @@ export const square = 'square';
 export const unknown = 'unknown';
 
 export const get_image_orientation = 
-  ( x: number | string, y: number | string):Orientation =>
+  ( x: number | string, y: number | string): Orientation =>
   ( x && y && is_numeric(x) && is_numeric(y)
-  ? ( x == y 
+  ? ( x === y 
     ? square 
     : ( y > x 
       ? portrait 

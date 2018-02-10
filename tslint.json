@@ -49,16 +49,13 @@
         "no-empty": true,
         "no-eval": true,
         "no-shadowed-variable": true,
-        "no-string-literal": true,
+        "no-string-literal": false,
         "no-switch-case-fall-through": true,
         "no-trailing-whitespace": false,
         "no-unused-expression": true,
-        "no-use-before-declare": true,
+        "no-use-before-declare": false,
         "one-line": [
             true,
-            "check-catch",
-            "check-else",
-            "check-open-brace",
             "check-whitespace"
         ],
         "quotemark": [true, "single", "jsx-double"],
@@ -84,7 +81,7 @@
                 "variable-declaration": "nospace"
             }
         ],
-        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case"],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-leading-underscore", "allow-pascal-case", "allow-snake-case"],
         "whitespace": [
             true,
             "check-branch",

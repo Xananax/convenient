@@ -27,6 +27,6 @@ export function type_of_return<A, B, C, D, T>(fn: (a: A, b: B, c: C, d: D) => T,
 export function type_of_return<A, B, C, D, T>(fn: (a: A, b: B, c: C, d: D) => T, a: A, b: B): T
 export function type_of_return<A, B, C, D, T>(fn: (a: A, b: B, c: C, d: D) => T, a: A, b: B, c: C): T
 export function type_of_return<A, B, C, D, T>(fn: (a: A, b: B, c: C, d: D) => T, a: A, b: B, c: C, d: D): T
-export function type_of_return(){return null}
+export function type_of_return() { return null }
 
 export default type_of_return

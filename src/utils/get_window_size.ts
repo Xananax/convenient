@@ -1,9 +1,9 @@
 export const get_window_size = 
   () =>
-  { if( !window )
+  { if ( !window )
     { return (
-      { width:0
-      , height:0
+      { width:  0
+      , height: 0
       })
     }
   ; const width =
