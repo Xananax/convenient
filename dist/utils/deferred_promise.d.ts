@@ -2,7 +2,7 @@ export interface Resolve<T> {
     (value?: T | PromiseLike<T>): void;
 }
 export interface Reject {
-    (reason?: any): void;
+    <T>(reason?: T): void;
 }
 export interface DeferredPromise<T> extends Promise<T> {
     resolve: Resolve<T>;

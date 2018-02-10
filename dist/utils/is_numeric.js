@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+// tslint:disable-next-line:no-any
 exports.is_numeric = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };

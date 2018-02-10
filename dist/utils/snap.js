@@ -25,9 +25,9 @@ exports.snap_max = function (resolution, num) {
  */
 exports.snap = function (resolution, num, type) {
     if (type === void 0) { type = SnapType.MID; }
-    return (type == SnapType.MAX
+    return (type === SnapType.MAX
         ? exports.snap_max(resolution, num)
-        : (type == SnapType.MIN
+        : (type === SnapType.MIN
             ? exports.snap_min(resolution, num)
             : exports.snap_mid(resolution, num)));
 };

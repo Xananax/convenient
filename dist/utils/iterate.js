@@ -12,5 +12,6 @@ function iterate(obj, map) {
     return (map ? iter(map) : iter);
 }
 exports.iterate = iterate;
+/* tslint:enable:no-any */
 exports.default = iterate;
 //# sourceMappingURL=iterate.js.map

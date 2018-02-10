@@ -7,7 +7,7 @@ exports.square = 'square';
 exports.unknown = 'unknown';
 exports.get_image_orientation = function (x, y) {
     return (x && y && is_numeric_1.is_numeric(x) && is_numeric_1.is_numeric(y)
-        ? (x == y
+        ? (x === y
             ? exports.square
             : (y > x
                 ? exports.portrait

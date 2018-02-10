@@ -1,6 +1,7 @@
 import { make_global }      from './make_global'
-import { deferred_promise } from './deferred_promise'
+import { deferred_promise,  } from './deferred_promise'
 import { load_script }      from './load_script'
+import { DeferredPromise } from '../main';
 
 export interface GoogleMapsArgs 
   { latitude:  number
@@ -11,7 +12,7 @@ export interface GoogleMapsArgs
   , token:     string
   }
 
-export const googleLoaded = deferred_promise()
+export const googleLoaded:DeferredPromise<void> = deferred_promise()
 
 const CALLBACK_NAME = 'google_map_api_loaded'
 
