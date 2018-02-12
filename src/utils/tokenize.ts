@@ -19,10 +19,26 @@ export interface EmailToken
   ; url:  string
   }
 
+export interface URLToken
+  { type: 'URL'
+  ; text: string
+  ; url:  string
+  ; external?: boolean
+  }
+
+export interface PhoneToken
+  { type: 'PHONE'
+  ; text: string
+  ; url:  string
+  }
+
 export type Token =
   | TextToken
   | LinebreakToken
   | TagToken
+  | EmailToken
+  | URLToken
+  | PhoneToken
 
 export const TAG = 
   ( tag: string ) => 
