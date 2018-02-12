@@ -15,7 +15,18 @@ export interface EmailToken {
     text: string;
     url: string;
 }
-export declare type Token = TextToken | LinebreakToken | TagToken;
+export interface URLToken {
+    type: 'URL';
+    text: string;
+    url: string;
+    external?: boolean;
+}
+export interface PhoneToken {
+    type: 'PHONE';
+    text: string;
+    url: string;
+}
+export declare type Token = TextToken | LinebreakToken | TagToken | EmailToken | URLToken | PhoneToken;
 export declare const TAG: (tag: string) => {
     type: string;
     text: string;
