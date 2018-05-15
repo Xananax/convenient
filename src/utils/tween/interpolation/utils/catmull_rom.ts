@@ -1,5 +1,5 @@
 export const catmull_rom = 
-  ( p0:number, p1:number, p2:number, p3:number, t:number ) =>
+  ( p0: number, p1: number, p2: number, p3: number, t: number ) =>
   { const v0 = (p2 - p0) * 0.5
   ; const v1 = (p3 - p1) * 0.5
   ; const t2 = t * t

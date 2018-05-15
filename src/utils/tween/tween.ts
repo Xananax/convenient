@@ -1,5 +1,5 @@
-import { easing } from './easing'
-import { interpolation } from './interpolation'
+// import { easing } from './easing'
+// import { interpolation } from './interpolation'
 import { EasingEquation } from './easing/easing'
 import { InterpolationFunction } from './interpolation/interpolation';
 
@@ -33,6 +33,5 @@ export const tween =
     ( start_value + (end_value - start_value) * ease( normalize_elapsed( time, start_time, duration )) 
     )
   )
-
 
 export default tween

@@ -1,6 +1,6 @@
 {
   "name": "convenable",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "a bunch of disparate, but convenient functions",
   "license": "MIT",
   "main": "./dist/main.js",
@@ -14,7 +14,9 @@
   "bugs": {
     "url": "https://github.com/Xananax/convenient/issues"
   },
-  "dependencies": {},
+  "dependencies": {
+    "gh-pages": "^1.1.0"
+  },
   "devDependencies": {
     "typescript": "latest",
     "react-dom": "latest",
@@ -30,10 +32,9 @@
     "build": "react-scripts-ts build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "compile": "tsc --moduleResolution Node --module commonjs --target es5 --outDir dist --declaration",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "prepublish": "npm compile"
+    "output": "tsc --moduleResolution Node --module commonjs --target es5 --outDir dist --declaration",
+    "predeploy": "npm run output && npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [
     "utils",

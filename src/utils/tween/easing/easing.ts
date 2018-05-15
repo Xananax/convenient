@@ -34,7 +34,7 @@ export interface Easing
   , sinusoidal: EasingStack
   }
 
-export const easing:Easing =
+export const easing: Easing =
   { back
   , bounce
   , circular

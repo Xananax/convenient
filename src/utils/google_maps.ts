@@ -12,7 +12,7 @@ export interface GoogleMapsArgs
   , token:     string
   }
 
-export const googleLoaded:DeferredPromise<void> = deferred_promise()
+export const googleLoaded: DeferredPromise<void> = deferred_promise()
 
 const CALLBACK_NAME = 'google_map_api_loaded'
 

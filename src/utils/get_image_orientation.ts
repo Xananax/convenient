@@ -2,10 +2,10 @@ import { is_numeric } from './is_numeric';
 
 export type Orientation = 'portrait' | 'landscape' | 'square' | 'unknown'
 
-export const portrait = 'portrait';
-export const landscape = 'landscape';
-export const square = 'square';
-export const unknown = 'unknown';
+export const portrait: Orientation = 'portrait';
+export const landscape: Orientation = 'landscape';
+export const square: Orientation = 'square';
+export const unknown: Orientation = 'unknown';
 
 export const get_image_orientation = 
   ( x: number | string, y: number | string): Orientation =>

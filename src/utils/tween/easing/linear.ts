@@ -1,4 +1,4 @@
-export const In = ( n:number ) => n
+export const In = ( n: number ) => n
 export const Out = In
 export const InOut = In
 

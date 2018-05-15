@@ -1,6 +1,8 @@
 import { linear as _linear } from './utils/linear'
 
-export const linear = ( v:any[], k:number, fn: (a:number, b:number, t:number) => number = _linear ) => 
+export const linear = 
+  // tslint:disable-next-line:no-any
+  ( v: any[], k: number, fn: (a: number, b: number, t: number) => number = _linear ) => 
   { const m = v.length - 1
   ; const f = m * k
   ; const i = Math.floor(f)

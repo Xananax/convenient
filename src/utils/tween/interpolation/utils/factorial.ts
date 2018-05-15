@@ -1,6 +1,6 @@
 export const factorial =
   ( a = [1] ) =>
-  ( n:number ) =>
+  ( n: number ) =>
   { let s = 1
   ; if (a[n])
     { return a[n];

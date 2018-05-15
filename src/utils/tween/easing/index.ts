@@ -1,5 +1,5 @@
-import { easing } from './easing'
+import { easing, Easing, EasingEquation, EasingStack } from './easing'
 
-export { easing }
+export { easing, Easing, EasingEquation, EasingStack }
 
 export default easing

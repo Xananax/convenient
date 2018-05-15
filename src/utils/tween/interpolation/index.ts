@@ -1,5 +1,5 @@
-import { interpolation, Interpolation } from './interpolation'
+import { interpolation, Interpolation, InterpolationFunction } from './interpolation'
 
-export { interpolation, Interpolation }
+export { interpolation, Interpolation, InterpolationFunction }
 
 export default interpolation
