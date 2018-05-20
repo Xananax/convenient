@@ -14,10 +14,13 @@ var get_file_input_files_1 = require("./get_file_input_files");
  * @param form
  */
 exports.serialize_form = function (form) {
-    var elements = form.elements, method = form.method, enctype = form.enctype, target = form.target;
+    ;
     var action = form.getAttribute('action') || '';
-    var name = form.getAttribute('name') || '';
-    var inputs = Array.prototype.slice.call(elements);
+    var formName = form.getAttribute('name') || '';
+    var enctype = form.getAttribute('enctype') || '';
+    var method = form.getAttribute('method') || '';
+    var target = form.getAttribute('target') || '';
+    var inputs = Array.prototype.slice.call(form.elements);
     var serialized = {};
     inputs.forEach(function (input) {
         var nodeName = input.nodeName, name = input.name, type = input.type, value = input.value, checked = input.checked;
@@ -65,7 +68,7 @@ exports.serialize_form = function (form) {
         ;
         serialized[name] = value;
     });
-    var ret = { name: name,
+    var ret = { name: formName,
         action: action,
         method: method,
         values: serialized,

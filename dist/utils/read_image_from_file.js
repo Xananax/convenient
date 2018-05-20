@@ -25,7 +25,9 @@ var serverResponse = { file: {},
     extension: '',
     toJSON: function () { return ({ name: '', extension: '' }); }
 };
-exports.is_image = function (file, extension) { return /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension); };
+exports.is_image = function (file, extension) {
+    return (/gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension));
+};
 /**
  * If the provided file is an image, this function will load the image
  * and return a set of useful properties.
@@ -33,7 +35,8 @@ exports.is_image = function (file, extension) { return /gif|png|jpe?g|tiff?|webp
  *
  * This function has a custom toJSON method that removes non-serializable data
  * @param file
- * @param isImage a function that receives the file and the extension, and has to return a boolean if the provided file is an image
+ * @param isImage a function that receives the file and the extension, and has
+ * to return a boolean if the provided file is an image
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 exports.readImageFromFile = is_env_browser_1.is_env_browser ?

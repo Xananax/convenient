@@ -1,4 +1,6 @@
+/// <reference types="react" />
 import { SerializedForm } from './serialize_form';
+import { FormEvent } from 'react';
 export interface FormHandler {
     (serialized: SerializedForm): void;
 }
@@ -10,4 +12,4 @@ export interface FormHandler {
  * - runs the provided callback with the serialized form
  * @param callback
  */
-export declare const handle_form_submit: (callback: FormHandler) => (event: Event) => void;
+export declare const handle_form_submit: (callback: FormHandler) => (event: Event | FormEvent<HTMLFormElement>) => void;

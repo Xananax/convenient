@@ -1,4 +1,5 @@
 import { serialize_form, SerializedForm } from './serialize_form'
+import { FormEvent } from 'react'
 
 export interface FormHandler
   { ( serialized: SerializedForm ): void
@@ -14,7 +15,7 @@ export interface FormHandler
  */
 export const handle_form_submit = 
   ( callback: FormHandler ) =>
-  ( event: Event | React.FormEvent<HTMLFormElement> ) =>
+  ( event: Event | FormEvent<HTMLFormElement> ) =>
   { event.preventDefault()
   ; event.stopPropagation()
   ; const form = event.target as HTMLFormElement

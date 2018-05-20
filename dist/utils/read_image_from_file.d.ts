@@ -22,7 +22,8 @@ export declare const is_image: (file: File, extension: string) => boolean;
  *
  * This function has a custom toJSON method that removes non-serializable data
  * @param file
- * @param isImage a function that receives the file and the extension, and has to return a boolean if the provided file is an image
+ * @param isImage a function that receives the file and the extension, and has
+ * to return a boolean if the provided file is an image
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 export declare const readImageFromFile: (file: File, isImage?: (file: File, extension: string) => boolean, useDecode?: boolean) => Promise<ImageReadReturnNoImage | ImageReadReturn>;

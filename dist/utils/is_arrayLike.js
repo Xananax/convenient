@@ -10,8 +10,8 @@ exports.is_arrayLike =
 function (obj) {
     return ((is_array_1.is_array(obj))
         || ((!!obj)
-            && (typeof obj === "object")
-            && (typeof obj.length === "number")
+            && (typeof obj === 'object')
+            && (typeof obj.length === 'number')
             && (obj.length === 0
                 || ((obj.length > 0)
                     && (obj.length - 1) in obj))));
