@@ -11,7 +11,6 @@ export interface SerializedForm
   ; target: string
   }
 
-  
 /**
  * Extracts all the fields from an html form, gets all their values,
  * and returns the results.
@@ -26,15 +25,13 @@ export interface SerializedForm
  */
 export const serialize_form = 
   ( form: HTMLFormElement ): SerializedForm => 
-  { const 
-    { elements
-    , method
-    , enctype
-    , target
-    } = form
+  { 
   ; const action = form.getAttribute('action') || ''
-  ; const name = form.getAttribute('name') || ''
-  ; const inputs = Array.prototype.slice.call(elements)
+  ; const formName = form.getAttribute('name') || ''
+  ; const enctype = form.getAttribute('enctype') || ''
+  ; const method = form.getAttribute('method') || ''
+  ; const target = form.getAttribute('target') || ''
+  ; const inputs = Array.prototype.slice.call(form.elements)
   ; const serialized = {}
   ; inputs.forEach( 
     ( input: HTMLInputElement ) =>
@@ -75,7 +72,7 @@ export const serialize_form =
     ; serialized[name] = value
     })
   ; const ret = 
-    { name
+    { name: formName
     , action
     , method
     , values: serialized

@@ -14,7 +14,7 @@ export interface FormHandler
  */
 export const handle_form_submit = 
   ( callback: FormHandler ) =>
-  ( event: Event ) =>
+  ( event: Event | React.FormEvent<HTMLFormElement> ) =>
   { event.preventDefault()
   ; event.stopPropagation()
   ; const form = event.target as HTMLFormElement

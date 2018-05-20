@@ -24,7 +24,7 @@ export const log_dev =
    * @param ...things
    */
   <T>
-  ( thing: T, ...things: any[] ):T => 
+  ( thing: T, ...things: any[] ): T => 
   ( console.log
     ( title
     , thing

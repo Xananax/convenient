@@ -5,7 +5,7 @@ export interface MaybePromiseArity1<A, B>
   }
 
 export interface Promised<A, B>
-  { (a: A):Promise<B>
+  { (a: A): Promise<B>
   }
 
 /**
@@ -22,6 +22,7 @@ export interface Promised<A, B>
  */
 export function promise_pipe<A, B>(fn1: MaybePromiseArity1<A, B>): Promised<A, B>
 export function promise_pipe<A, B, C> (fn1: MaybePromiseArity1<A, B>, fn2: MaybePromiseArity1<B, C>): Promised<A, C>
+// tslint:disable-next-line:max-line-length
 export function promise_pipe<A, B, C, D> (fn1: MaybePromiseArity1<A, B>, fn2: MaybePromiseArity1<B, C>, fn3: MaybePromiseArity1<C, D>): Promised<A, D>
 // tslint:disable-next-line:max-line-length
 export function promise_pipe<A, B, C, D, E> (fn1: MaybePromiseArity1<A, B>, fn2: MaybePromiseArity1<B, C>, fn3: MaybePromiseArity1<C, D>, fn4: MaybePromiseArity1<D, E>): Promised<A, E>
@@ -29,7 +30,7 @@ export function promise_pipe<A, B, C, D, E> (fn1: MaybePromiseArity1<A, B>, fn2:
 export function promise_pipe<A, B, C, D, E, F> (fn1: MaybePromiseArity1<A, B>, fn2: MaybePromiseArity1<B, C>, fn3: MaybePromiseArity1<C, D>, fn4: MaybePromiseArity1<D, E>, fn5: MaybePromiseArity1<E, F>): Promised<A, F>
 export function promise_pipe
   // tslint:disable-next-line:no-any
-  ( ...fns: MaybePromiseArity1<any, any>[] ) : Promised<any, any> 
+  ( ...fns: MaybePromiseArity1<any, any>[] ): Promised<any, any> 
   { switch (fns.length)
     { case 0: return identity 
     ; case 1: return promise_pipe1(fns[0])
@@ -40,7 +41,7 @@ export function promise_pipe
     ; default: break
     }
   ; const piped = 
-    (arg:any) => 
+    (arg: any) => 
     fns.reduce( ( prev, fn ) =>  prev.then(fn) , Promise.resolve(arg) )
   ; return piped
   }

@@ -27,7 +27,10 @@ const serverResponse: ImageReadReturnNoImage =
   , toJSON: () => ({ name: '', extension: ''})
   }
 
-export const is_image = ( file:File, extension:string ) => /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension)
+export const is_image = 
+  ( file: File, extension: string ) =>
+  ( /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension)
+  )
 
 /**
  * If the provided file is an image, this function will load the image
@@ -36,13 +39,14 @@ export const is_image = ( file:File, extension:string ) => /gif|png|jpe?g|tiff?|
  * 
  * This function has a custom toJSON method that removes non-serializable data
  * @param file 
- * @param isImage a function that receives the file and the extension, and has to return a boolean if the provided file is an image
+ * @param isImage a function that receives the file and the extension, and has
+ * to return a boolean if the provided file is an image
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 export const readImageFromFile = is_env_browser ?
   ( file: File
-  , isImage: ( file:File, extension:string ) => boolean = is_image
-  , useDecode:boolean = true
+  , isImage: ( file: File, extension: string ) => boolean = is_image
+  , useDecode: boolean = true
   ): Promise<ImageReadReturnNoImage|ImageReadReturn> =>
   new Promise( 
     ( resolve, reject ) => 

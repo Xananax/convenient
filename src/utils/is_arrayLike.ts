@@ -9,12 +9,12 @@ export const is_arrayLike =
   // tslint:disable-next-line:no-any
   ( obj: any ): obj is ArrayEnough<any> =>
   ( ( is_array(obj) )
-  ||( ( !!obj )
-    &&( typeof obj === "object" )
-    &&( typeof obj.length  === "number" )
-    &&( obj.length === 0 
-      ||( ( obj.length > 0 )
-        &&( obj.length - 1 ) in obj
+  || ( ( !!obj )
+    && ( typeof obj === 'object' )
+    && ( typeof obj.length  === 'number' )
+    && ( obj.length === 0 
+      || ( ( obj.length > 0 )
+        && ( obj.length - 1 ) in obj
         )
       )
     )

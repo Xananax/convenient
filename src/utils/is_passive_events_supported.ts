@@ -6,13 +6,16 @@ import { no_op } from './no_op'
  */
 let passive_events_supported = false;
 
-if(is_env_browser)
+if ( is_env_browser )
 { try
-  { const opts = Object.defineProperty({}, 'passive', 
-    { get() 
-      { passive_events_supported = true
+  { const opts = Object.defineProperty
+    ( {}
+    , 'passive'
+    , { get() 
+        { passive_events_supported = true
+        }
       }
-    })
+    )
   ; window.addEventListener('test', no_op, opts);
   }
   catch (e) 

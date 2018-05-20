@@ -1,9 +1,8 @@
 import { is_env_browser } from './is_env_browser'
 import { get_image_orientation, Orientation, square } from './get_image_orientation'
 
-
 export interface HTMLImageElementWithDecode extends HTMLImageElement
-  { decode:() => Promise<null>
+  { decode: () => Promise<null>
   }
 
 export interface ImageLoadReturnJSON
@@ -44,7 +43,7 @@ const serverResponse: ImageLoadReturn =
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 export const load_image = is_env_browser ?
-  ( src: string, useDecode:boolean=true ): Promise<ImageLoadReturn> => new Promise( ( resolve, reject ) => 
+  ( src: string, useDecode: boolean = true ): Promise<ImageLoadReturn> => new Promise( ( resolve, reject ) => 
   { const image = new Image()
   ; const onload = 
     () => 
@@ -73,7 +72,7 @@ export const load_image = is_env_browser ?
     ; return resolve(ret)
     }
   ; const onerror = 
-    ( evt:ErrorEvent | Error ) => 
+    ( evt: ErrorEvent | Error ) => 
     { clean()
     ; reject(new Error(evt.message || 'could not load file'))
     }
@@ -84,7 +83,7 @@ export const load_image = is_env_browser ?
     }
   ; image.onerror = onerror
   ; image.src = src
-  ; if( useDecode && ( 'decode' in (image as HTMLImageElementWithDecode) ) )
+  ; if ( useDecode && ( 'decode' in (image as HTMLImageElementWithDecode) ) )
     { image.src = src
     ; (image as HTMLImageElementWithDecode).decode().then(onload).catch(onerror)
     }

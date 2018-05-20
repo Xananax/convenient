@@ -35,7 +35,7 @@ export const load_script =
       else
       { script.onload = onLoad
       ; script.onerror = 
-        ( evt:ErrorEvent | Error ) =>
+        ( evt: ErrorEvent | Error ) =>
         { reject( new Error(evt.message || `Could not load file`) )
         }
       }
