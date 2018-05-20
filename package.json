@@ -1,6 +1,6 @@
 {
   "name": "convenable",
-  "version": "0.0.7.1",
+  "version": "0.0.8",
   "description": "a bunch of disparate, but convenient functions",
   "license": "MIT",
   "main": "./dist/main.js",
