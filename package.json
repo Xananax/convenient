@@ -1,6 +1,6 @@
 {
   "name": "convenable",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "a bunch of disparate, but convenient functions",
   "license": "MIT",
   "main": "./dist/main.js",
@@ -19,6 +19,7 @@
     "react-dom": "latest",
     "react": "latest",
     "react-scripts-ts": "latest",
+    "rimraf": "^2.6.2",
     "typescript": "latest",
     "@types/react-dom": "latest",
     "@types/react": "latest",
@@ -26,12 +27,15 @@
     "@types/node": "latest"
   },
   "scripts": {
-    "start": "react-scripts-ts start",
-    "build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
-    "eject": "react-scripts-ts eject",
-    "output": "tsc --moduleResolution Node --module commonjs --target es5 --outDir dist --declaration",
-    "predeploy": "npm run output && npm run build",
+    "demo:start": "react-scripts-ts start",
+    "demo:build": "react-scripts-ts build",
+    "demo:test": "react-scripts-ts test --env=jsdom",
+    "demo":"npm run demo:build",
+    "package:build": "tsc --moduleResolution Node --module commonjs --target es5 --outDir dist --declaration",
+    "package:clean": "rimraf ./dist",
+    "start":"npm run demo:start",
+    "package":"npm run package:clean && npm run package:build",
+    "predeploy": "npm run package && npm run demo",
     "deploy": "gh-pages -d build"
   },
   "keywords": [
