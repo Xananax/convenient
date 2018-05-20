@@ -14,18 +14,16 @@
   "bugs": {
     "url": "https://github.com/Xananax/convenient/issues"
   },
-  "dependencies": {
-    "gh-pages": "^1.1.0"
-  },
   "devDependencies": {
-    "typescript": "latest",
+    "gh-pages": "latest",
     "react-dom": "latest",
     "react": "latest",
-    "react-scripts-ts": "2.8.0",
+    "react-scripts-ts": "latest",
+    "typescript": "latest",
     "@types/react-dom": "latest",
     "@types/react": "latest",
-    "@types/jest": "^20.0.8",
-    "@types/node": "^8.0.28"
+    "@types/jest": "latest",
+    "@types/node": "latest"
   },
   "scripts": {
     "start": "react-scripts-ts start",
