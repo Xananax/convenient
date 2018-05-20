@@ -1,5 +1,12 @@
-// tslint:disable-next-line:no-any
-export const is_numeric = (n: any): n is number =>
-  !isNaN(parseFloat(n)) && isFinite(n);
+/**
+ * checks if the passed argument is numeric
+ * @param numeric
+ */
+export const is_numeric = 
+  // tslint:disable-next-line:no-any
+  ( numeric: any ): numeric is number =>
+  (  !isNaN(parseFloat(numeric))
+  && isFinite(numeric)
+  )
 
 export default is_numeric

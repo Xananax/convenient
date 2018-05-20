@@ -97,3 +97,5 @@ export const tokenize =
     , tokenArr
     )
   )
+
+export default tokenize

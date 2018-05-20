@@ -4,3 +4,4 @@
  * @param threshold
  */
 export declare const throttle: <F extends Function>(fn: F, threshold?: number) => F;
+export default throttle;

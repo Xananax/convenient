@@ -18,8 +18,8 @@ exports.snap_max = function (resolution, num) {
 /**
  * Returns the the nearest grid resolution less than or equal to the number.
  *
- * @param {Number} resolution The grid resolution to snap to.
- * @param {Number} number The cursor to align.
+ * @param resolution The grid resolution to snap to.
+ * @param number The cursor to align.
  * @returns The nearest multiple of resolution lower than the number.
  * @type Number
  */

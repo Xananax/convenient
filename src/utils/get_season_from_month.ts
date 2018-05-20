@@ -28,6 +28,10 @@ export const seasons: { [ key: string ]: SEASON } =
   , 12: WINTER, 'december': WINTER  , 'dec': WINTER
   }
 
+/**
+ * Takes a month and returns a season string
+ * @param month a month as a string ("january"), an abbreviation ("january") or a number ("1" or `1`)
+ */
 export const get_season_from_month = 
   ( month: number|string ): SEASON => 
   ( seasons[month] || ''

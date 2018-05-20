@@ -27,6 +27,8 @@ const serverResponse: ImageReadReturnNoImage =
   , toJSON: () => ({ name: '', extension: ''})
   }
 
+export const is_image = ( file:File, extension:string ) => /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension)
+
 /**
  * If the provided file is an image, this function will load the image
  * and return a set of useful properties.
@@ -34,35 +36,42 @@ const serverResponse: ImageReadReturnNoImage =
  * 
  * This function has a custom toJSON method that removes non-serializable data
  * @param file 
+ * @param isImage a function that receives the file and the extension, and has to return a boolean if the provided file is an image
+ * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 export const readImageFromFile = is_env_browser ?
-  (file: File): Promise<ImageReadReturnNoImage|ImageReadReturn> => new Promise( ( resolve, reject ) => 
-  { if (!file)
-    { return reject(new Error('no file provided'))
-    }
-  ; const name = file.name
-  ; const extension = get_file_extension(name)
-  ; const isImage = /gif|png|jpe?g/.test(extension)
-  ; if (!isImage)
-    { const ret = { file, name, extension, toJSON: () => ({ name, extension }) }
-    ; return resolve(ret)
-    }
-  ; window.URL = window.URL || window['webkitURL'];
-  ; const src = window.URL.createObjectURL(file);
-  ; const free = () => window.URL.revokeObjectURL( src );
-  ; load_image(src)
-    .then( 
-      ( { toJSON: prevToJSON, ...props } ) => 
-      { const ret =
-        { ...props
-        , free
-        , file
-        , name
-        , extension
-        , toJSON: () => ({...prevToJSON(), name, extension })
-        }
-      ; resolve(ret)
+  ( file: File
+  , isImage: ( file:File, extension:string ) => boolean = is_image
+  , useDecode:boolean = true
+  ): Promise<ImageReadReturnNoImage|ImageReadReturn> =>
+  new Promise( 
+    ( resolve, reject ) => 
+    { if (!file)
+      { return reject(new Error('no file provided'))
       }
-    )
-    .catch(reject)
-  }) : (file?: File): Promise<ImageReadReturnNoImage|ImageReadReturn> => Promise.resolve(serverResponse) 
+    ; const name = file.name
+    ; const extension = get_file_extension(name)
+    ; if (!isImage(file, extension))
+      { const ret = { file, name, extension, toJSON: () => ({ name, extension }) }
+      ; return resolve(ret)
+      }
+    ; window.URL = window.URL || window['webkitURL'];
+    ; const src = window.URL.createObjectURL(file);
+    ; const free = () => window.URL.revokeObjectURL( src );
+    ; load_image( src, useDecode && extension !== 'svg' )
+      .then( 
+        ( { toJSON: prevToJSON, ...props } ) => 
+        { const ret =
+          { ...props
+          , free
+          , file
+          , name
+          , extension
+          , toJSON: () => ({...prevToJSON(), name, extension })
+          }
+        ; resolve(ret)
+        }
+      )
+      .catch(reject)
+    }
+  ) : (file?: File): Promise<ImageReadReturnNoImage|ImageReadReturn> => Promise.resolve(serverResponse) 

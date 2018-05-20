@@ -44,3 +44,5 @@ export const get_file_input_files =
     : null
     )
   }
+
+export default get_file_input_files

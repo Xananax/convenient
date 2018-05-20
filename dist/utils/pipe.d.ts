@@ -1,6 +1,18 @@
 export interface Arity1<A, B> {
     (a: A): B;
 }
+/**
+ * Chains functions together. For example:
+ * ```js
+ * const add = ( n:number ) => n+10
+ * const multiply = ( n:number ) => n*100
+ * const happy = ( n:string|number ) => `happy ${n}`
+ * const birthday = ( s:string ) => `${s} birthday!`
+ * const happyBirthday = pipe(add,multiply,happy,birthday)
+ * console.log(happyBirthday(5)) // happy 150 birthday!
+ * ```
+ * @param ...fns any number of functions of arity 1
+ */
 export declare function pipe<A, B>(fn1: Arity1<A, B>): Arity1<A, B>;
 export declare function pipe<A, B, C>(fn1: Arity1<A, B>, fn2: Arity1<B, C>): Arity1<A, C>;
 export declare function pipe<A, B, C, D>(fn1: Arity1<A, B>, fn2: Arity1<B, C>, fn3: Arity1<C, D>): Arity1<A, D>;

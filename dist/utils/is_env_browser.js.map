@@ -1,1 +1,1 @@
-{"version":3,"file":"is_env_browser.js","sourceRoot":"","sources":["../../src/utils/is_env_browser.ts"],"names":[],"mappings":";;AAAa,QAAA,cAAc,GAAG,CAAC,OAAO,MAAM,KAAK,WAAW,CAAC,CAAA;AAC7D,kBAAe,sBAAc,CAAA"}
+{"version":3,"file":"is_env_browser.js","sourceRoot":"","sources":["../../src/utils/is_env_browser.ts"],"names":[],"mappings":";;AAAA;;GAEG;AACU,QAAA,cAAc,GAAG,CAAC,OAAO,MAAM,KAAK,WAAW,CAAC,CAAA;AAC7D,kBAAe,sBAAc,CAAA"}

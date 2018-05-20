@@ -17,6 +17,10 @@ exports.seasons = { 1: exports.WINTER, 'january': exports.WINTER, 'jan': exports
     11: exports.AUTUMN, 'november': exports.AUTUMN, 'nov': exports.AUTUMN,
     12: exports.WINTER, 'december': exports.WINTER, 'dec': exports.WINTER
 };
+/**
+ * Takes a month and returns a season string
+ * @param month a month as a string ("january"), an abbreviation ("january") or a number ("1" or `1`)
+ */
 exports.get_season_from_month = function (month) {
     return (exports.seasons[month] || '');
 };

@@ -35,4 +35,5 @@ exports.tokenize = function (text, tokenArr) {
             .map(exports.makeToken), [exports.LINEBREAK]);
     }, tokenArr));
 };
+exports.default = exports.tokenize;
 //# sourceMappingURL=tokenize.js.map

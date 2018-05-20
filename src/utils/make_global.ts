@@ -7,12 +7,21 @@ export const root_object =
   || ( this )
   )
 
+/**
+ * Sets a property on the global object. That is `window` in browser environments, `process` in node, etc
+ * @param name 
+ * @param thing 
+ */
 export const set_global = 
   // tslint:disable-next-line:no-any
   ( name: string, thing: any ) => 
   ( root_object[name] = thing
   )
 
+/**
+ * Retrieves a property from the global object (`window` in browser environments, `process` in node, etc)
+ * @param name 
+ */
 export const get_global = 
   ( name: string ) =>
   ( root_object[ name ]

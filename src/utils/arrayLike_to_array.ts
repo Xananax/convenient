@@ -5,6 +5,8 @@
  */
 export const arrayLike_to_array = 
   <T>
-  ( listLike: {[ i: number ]: T, length: number } | Iterable<T> ): T[] =>
+  ( listLike: ArrayLike<T> | Iterable<T> ): T[] =>
   ( Array.prototype.slice.call(listLike)
   )
+
+export default arrayLike_to_array

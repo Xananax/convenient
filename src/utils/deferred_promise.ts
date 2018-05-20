@@ -11,6 +11,11 @@ export interface DeferredPromise<T> extends Promise<T>
   ; reject: Reject
   }
 
+/**
+ * Returns a promise with exposed `resolve()` and `reject()` that can
+ * be used any time.
+ * Works well with lazy evaluation.
+ */
 export const deferred_promise =
   (): DeferredPromise<void> =>
   { let receiver

@@ -36,4 +36,5 @@ exports.debounce = function (func, wait, immediate) {
     };
     return debounced;
 };
+exports.default = exports.debounce;
 //# sourceMappingURL=debounce.js.map

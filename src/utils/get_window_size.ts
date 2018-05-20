@@ -1,12 +1,17 @@
+import { is_env_browser } from './is_env_browser'
+
+const server_size =
+  { width:  0
+  , height: 0
+  }
+
+/**
+ * 
+ */
 export const get_window_size = 
+  is_env_browser ?
   () =>
-  { if ( !window )
-    { return (
-      { width:  0
-      , height: 0
-      })
-    }
-  ; const width =
+  { const width =
     ( window.innerWidth
       || document.documentElement.clientWidth
       || document.body.clientWidth
@@ -17,6 +22,6 @@ export const get_window_size =
       || document.body.clientHeight
     )
   ; return { width, height }
-  }
+  } : () => server_size
 
 export default get_window_size

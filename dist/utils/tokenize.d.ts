@@ -65,3 +65,4 @@ export declare const tokenize: (text: string, tokenArr?: ({
 })[]) => {
     type: string;
 }[];
+export default tokenize;

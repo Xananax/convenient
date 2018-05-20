@@ -1,8 +1,8 @@
 /**
- * Calculates height without padding
+ * Calculates an element's height without padding
  * @param el 
  */
-export const innerHeight = 
+export const dom_innerHeight = 
   ( el: HTMLElement ) => 
   { const style = window.getComputedStyle(el)
   ; return ( 
@@ -11,3 +11,5 @@ export const innerHeight =
       - parseInt(style.getPropertyValue('padding-bottom'), 10)
     )
   }
+
+export default dom_innerHeight

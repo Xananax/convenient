@@ -29,4 +29,5 @@ exports.throttle = function (fn, threshold) {
     };
     return throttled;
 };
+exports.default = exports.throttle;
 //# sourceMappingURL=throttle.js.map

@@ -28,3 +28,5 @@ export const throttle =
     }
   ; return throttled
   }
+
+export default throttle

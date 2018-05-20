@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var identity_1 = require("./identity");
-// tslint:disable-next-line:no-any
 function pipe() {
     var fns = [];
     for (var _i = 0; _i < arguments.length; _i++) {

@@ -24,12 +24,14 @@ var serverResponse = __assign({ image: {} }, serverResponseJSON, { toJSON: funct
  *
  * This function has a custom toJSON method that removes non-serializable data
  * @param src
+ * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 exports.load_image = is_env_browser_1.is_env_browser ?
-    function (src) { return new Promise(function (resolve, reject) {
-        var image = new Image();
-        image.onload =
-            function () {
+    function (src, useDecode) {
+        if (useDecode === void 0) { useDecode = true; }
+        return new Promise(function (resolve, reject) {
+            var image = new Image();
+            var onload = function () {
                 var height = image.naturalHeight, width = image.naturalWidth;
                 var orientation = get_image_orientation_1.get_image_orientation(width, height);
                 var ratioWidth = height / width;
@@ -43,13 +45,27 @@ exports.load_image = is_env_browser_1.is_env_browser ?
                     orientation: orientation
                 };
                 var ret = __assign({ image: image }, json, { toJSON: function () { return json; } });
+                clean();
                 return resolve(ret);
             };
-        image.onerror =
-            function (evt) {
-                reject(new Error('could not load file'));
+            var onerror = function (evt) {
+                clean();
+                reject(new Error(evt.message || 'could not load file'));
             };
-        image.src = src;
-    }); }
+            var clean = function () {
+                image.onerror = null;
+                image.onload = null;
+            };
+            image.onerror = onerror;
+            image.src = src;
+            if (useDecode && ('decode' in image)) {
+                image.src = src;
+                image.decode().then(onload).catch(onerror);
+            }
+            else {
+                image.onload = onload;
+            }
+        });
+    }
     : function (src) { return Promise.resolve(serverResponse); };
 //# sourceMappingURL=load_image.js.map

@@ -1,13 +1,23 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var arrayLike_to_array_1 = require("./arrayLike_to_array");
 var get_file_input_files_1 = require("./get_file_input_files");
+/**
+ * Extracts all the fields from an html form, gets all their values,
+ * and returns the results.
+ * Some magic that happens:
+ *  - files inputs will return an array of files (rather than a `FileList`)
+ *  - if a file input does not have the `multiple` property, it will return a single file
+ *  - checkboxes will return booleans
+ *  - number and range inputs will return floats (i.e., numbers)
+ *  - any field with an undefined value, or without a name will be skipped and not serialized
+ *  - any button will be skipped
+ * @param form
+ */
 exports.serialize_form = function (form) {
-    var url = window.location.protocol + '//' + window.location.host;
-    var regex = new RegExp('^' + url + '/?', 'ig');
-    var elements = form.elements, formName = form.name, _action = form.action, method = form.method, enctype = form.enctype, target = form.target;
-    var action = _action.replace(regex, '');
-    var inputs = arrayLike_to_array_1.arrayLike_to_array(elements);
+    var elements = form.elements, method = form.method, enctype = form.enctype, target = form.target;
+    var action = form.getAttribute('action') || '';
+    var name = form.getAttribute('name') || '';
+    var inputs = Array.prototype.slice.call(elements);
     var serialized = {};
     inputs.forEach(function (input) {
         var nodeName = input.nodeName, name = input.name, type = input.type, value = input.value, checked = input.checked;
@@ -55,7 +65,7 @@ exports.serialize_form = function (form) {
         ;
         serialized[name] = value;
     });
-    var ret = { name: formName,
+    var ret = { name: name,
         action: action,
         method: method,
         values: serialized,

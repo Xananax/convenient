@@ -31,4 +31,5 @@ exports.get_file_input_files = function (input) {
         ? exports.empty_files
         : null);
 };
+exports.default = exports.get_file_input_files;
 //# sourceMappingURL=get_file_input_files.js.map

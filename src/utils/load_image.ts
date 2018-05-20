@@ -73,9 +73,9 @@ export const load_image = is_env_browser ?
     ; return resolve(ret)
     }
   ; const onerror = 
-    ( evt:any ) => 
+    ( evt:ErrorEvent | Error ) => 
     { clean()
-    ; reject(new Error('could not load file'))
+    ; reject(new Error(evt.message || 'could not load file'))
     }
   ; const clean = 
     () =>

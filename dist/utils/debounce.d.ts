@@ -9,3 +9,4 @@
  * @param immediate
  */
 export declare const debounce: <F extends Function>(func: F, wait?: number, immediate?: boolean) => F;
+export default debounce;

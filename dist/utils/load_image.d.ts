@@ -1,4 +1,7 @@
 import { Orientation } from './get_image_orientation';
+export interface HTMLImageElementWithDecode extends HTMLImageElement {
+    decode: () => Promise<null>;
+}
 export interface ImageLoadReturnJSON {
     width: number;
     height: number;
@@ -8,7 +11,7 @@ export interface ImageLoadReturnJSON {
     orientation: Orientation;
 }
 export interface ImageLoadReturn extends ImageLoadReturnJSON {
-    image: HTMLImageElement;
+    image: HTMLImageElement | HTMLImageElementWithDecode;
     toJSON: () => ImageLoadReturnJSON;
 }
 /**
@@ -17,5 +20,6 @@ export interface ImageLoadReturn extends ImageLoadReturnJSON {
  *
  * This function has a custom toJSON method that removes non-serializable data
  * @param src
+ * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
-export declare const load_image: (src: string) => Promise<ImageLoadReturn>;
+export declare const load_image: (src: string, useDecode?: boolean) => Promise<ImageLoadReturn>;

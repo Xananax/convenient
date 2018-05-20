@@ -5,11 +5,16 @@ exports.portrait = 'portrait';
 exports.landscape = 'landscape';
 exports.square = 'square';
 exports.unknown = 'unknown';
-exports.get_image_orientation = function (x, y) {
-    return (x && y && is_numeric_1.is_numeric(x) && is_numeric_1.is_numeric(y)
-        ? (x === y
+/**
+ * Returns an orientation string for a given width and height
+ * @param width
+ * @param height
+ */
+exports.get_image_orientation = function (width, height) {
+    return (width && height && is_numeric_1.is_numeric(width) && is_numeric_1.is_numeric(height)
+        ? (width === height
             ? exports.square
-            : (y > x
+            : (height > width
                 ? exports.portrait
                 : exports.landscape))
         : exports.unknown);

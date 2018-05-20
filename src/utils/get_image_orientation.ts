@@ -7,12 +7,17 @@ export const landscape: Orientation = 'landscape';
 export const square: Orientation = 'square';
 export const unknown: Orientation = 'unknown';
 
+/**
+ * Returns an orientation string for a given width and height
+ * @param width 
+ * @param height 
+ */
 export const get_image_orientation = 
-  ( x: number | string, y: number | string): Orientation =>
-  ( x && y && is_numeric(x) && is_numeric(y)
-  ? ( x === y 
+  ( width: number | string, height: number | string): Orientation =>
+  ( width && height && is_numeric(width) && is_numeric(height)
+  ? ( width === height 
     ? square 
-    : ( y > x 
+    : ( height > width 
       ? portrait 
       : landscape
       )

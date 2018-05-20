@@ -13,3 +13,4 @@ export declare const empty_files: File[];
  * @param input a file input
  */
 export declare const get_file_input_files: (input: HTMLInputElement) => File[] | null;
+export default get_file_input_files;
