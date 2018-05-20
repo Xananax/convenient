@@ -60,7 +60,7 @@ export const pipe3 =
   (a: A): D =>
   f(g(h(a)))
 
-const pipe4 = 
+export const pipe4 = 
   <A, B, C, D, E>
   ( i: Arity1<A, B>
   , h: Arity1<B, C>
@@ -70,7 +70,7 @@ const pipe4 =
   (a: A): E =>
   f(g(h(i(a))))
 
-const pipe5 = 
+export const pipe5 = 
   <A, B, C, D, E, F>
   ( j: Arity1<A, B>
   , i: Arity1<B, C>

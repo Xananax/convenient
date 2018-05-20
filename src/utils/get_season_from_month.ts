@@ -4,28 +4,28 @@ export type SEASON =
   | 'winter'
   | 'spring'
 
-export const SUMMER: SEASON = 'summer'
-export const AUTUMN: SEASON = 'autumn'
-export const WINTER: SEASON = 'winter'
-export const SPRING: SEASON = 'spring'
+export const SEASON_SUMMER: SEASON = 'summer'
+export const SEASON_AUTUMN: SEASON = 'autumn'
+export const SEASON_WINTER: SEASON = 'winter'
+export const SEASON_SPRING: SEASON = 'spring'
 
-export const seasons: { [ key: string ]: SEASON } = 
-  { 1: WINTER, 'january': WINTER   , 'jan': WINTER
-  , 2: WINTER, 'february': WINTER  , 'feb': WINTER
+const seasons: { [ key: string ]: SEASON } = 
+  { 1: SEASON_WINTER, 'january': SEASON_WINTER   , 'jan': SEASON_WINTER
+  , 2: SEASON_WINTER, 'february': SEASON_WINTER  , 'feb': SEASON_WINTER
   
-  , 3: SPRING, 'march': SPRING     , 'mar': SPRING
-  , 4: SPRING, 'april': SPRING     , 'apr': SPRING
-  , 5: SPRING, 'may': SPRING
+  , 3: SEASON_SPRING, 'march': SEASON_SPRING     , 'mar': SEASON_SPRING
+  , 4: SEASON_SPRING, 'april': SEASON_SPRING     , 'apr': SEASON_SPRING
+  , 5: SEASON_SPRING, 'may': SEASON_SPRING
 
-  , 6: SUMMER, 'june': SUMMER      , 'jun': SUMMER
-  , 7: SUMMER, 'july': SUMMER      , 'jul': SUMMER
-  , 8: SUMMER, 'august': SUMMER    , 'aug': SUMMER
+  , 6: SEASON_SUMMER, 'june': SEASON_SUMMER      , 'jun': SEASON_SUMMER
+  , 7: SEASON_SUMMER, 'july': SEASON_SUMMER      , 'jul': SEASON_SUMMER
+  , 8: SEASON_SUMMER, 'august': SEASON_SUMMER    , 'aug': SEASON_SUMMER
 
-  , 9: AUTUMN, 'september': AUTUMN , 'sep': AUTUMN
-  , 10: AUTUMN, 'october': AUTUMN   , 'oct': AUTUMN
-  , 11: AUTUMN, 'november': AUTUMN  , 'nov': AUTUMN
+  , 9: SEASON_AUTUMN, 'september': SEASON_AUTUMN , 'sep': SEASON_AUTUMN
+  , 10: SEASON_AUTUMN, 'october': SEASON_AUTUMN   , 'oct': SEASON_AUTUMN
+  , 11: SEASON_AUTUMN, 'november': SEASON_AUTUMN  , 'nov': SEASON_AUTUMN
 
-  , 12: WINTER, 'december': WINTER  , 'dec': WINTER
+  , 12: SEASON_WINTER, 'december': SEASON_WINTER  , 'dec': SEASON_WINTER
   }
 
 /**

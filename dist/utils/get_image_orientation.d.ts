@@ -1,8 +1,8 @@
 export declare type Orientation = 'portrait' | 'landscape' | 'square' | 'unknown';
-export declare const portrait: Orientation;
-export declare const landscape: Orientation;
-export declare const square: Orientation;
-export declare const unknown: Orientation;
+export declare const ORIENTATION_PORTRAIT: Orientation;
+export declare const ORIENTATION_LANDSCAPE: Orientation;
+export declare const ORIENTATION_SQUARE: Orientation;
+export declare const ORIENTATION_UNKNOWN: Orientation;
 /**
  * Returns an orientation string for a given width and height
  * @param width

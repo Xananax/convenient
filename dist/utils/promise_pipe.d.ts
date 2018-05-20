@@ -24,3 +24,5 @@ export declare function promise_pipe<A, B, C, D, E, F>(fn1: MaybePromiseArity1<A
 export declare const promise_pipe1: <A, B>(f: MaybePromiseArity1<A, B>) => Promised<A, B>;
 export declare const promise_pipe2: <A, B, C>(g: MaybePromiseArity1<A, B>, f: MaybePromiseArity1<B, C>) => Promised<A, C>;
 export declare const promise_pipe3: <A, B, C, D>(h: MaybePromiseArity1<A, B>, g: MaybePromiseArity1<B, C>, f: MaybePromiseArity1<C, D>) => Promised<A, D>;
+export declare const promise_pipe4: <A, B, C, D, E>(i: MaybePromiseArity1<A, B>, h: MaybePromiseArity1<B, C>, g: MaybePromiseArity1<C, D>, f: MaybePromiseArity1<D, E>) => Promised<A, E>;
+export declare const promise_pipe5: <A, B, C, D, E, F>(j: MaybePromiseArity1<A, B>, i: MaybePromiseArity1<B, C>, h: MaybePromiseArity1<C, D>, g: MaybePromiseArity1<D, E>, f: MaybePromiseArity1<E, F>) => Promised<A, F>;

@@ -1,4 +1,4 @@
-export declare enum SnapType {
+export declare enum SNAP_TYPE {
     MID = 0,
     MIN = 1,
     MAX = 2,
@@ -14,5 +14,5 @@ export declare const snap_max: (resolution: number, num: number) => number;
  * @returns The nearest multiple of resolution lower than the number.
  * @type Number
  */
-export declare const snap: (resolution: number, num: number, type?: SnapType) => number;
+export declare const snap: (resolution: number, num: number, type?: SNAP_TYPE) => number;
 export default snap;

@@ -11,8 +11,8 @@ function promise_pipe() {
         case 1: return exports.promise_pipe1(fns[0]);
         case 2: return exports.promise_pipe2(fns[0], fns[1]);
         case 3: return exports.promise_pipe3(fns[0], fns[1], fns[2]);
-        case 4: return promise_pipe4(fns[0], fns[1], fns[2], fns[3]);
-        case 5: return promise_pipe5(fns[0], fns[1], fns[2], fns[3], fns[4]);
+        case 4: return exports.promise_pipe4(fns[0], fns[1], fns[2], fns[3]);
+        case 5: return exports.promise_pipe5(fns[0], fns[1], fns[2], fns[3], fns[4]);
         default: break;
     }
     ;
@@ -37,12 +37,12 @@ exports.promise_pipe3 = function (h, g, f) {
         return Promise.resolve(a).then(h).then(g).then(f);
     };
 };
-var promise_pipe4 = function (i, h, g, f) {
+exports.promise_pipe4 = function (i, h, g, f) {
     return function (a) {
         return Promise.resolve(a).then(i).then(h).then(g).then(f);
     };
 };
-var promise_pipe5 = function (j, i, h, g, f) {
+exports.promise_pipe5 = function (j, i, h, g, f) {
     return function (a) {
         return Promise.resolve(a).then(j).then(i).then(h).then(g).then(f);
     };

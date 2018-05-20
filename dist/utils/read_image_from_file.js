@@ -39,7 +39,7 @@ exports.is_image = function (file, extension) {
  * to return a boolean if the provided file is an image
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
-exports.readImageFromFile = is_env_browser_1.is_env_browser ?
+exports.read_image_from_file = is_env_browser_1.is_env_browser ?
     function (file, isImage, useDecode) {
         if (isImage === void 0) { isImage = exports.is_image; }
         if (useDecode === void 0) { useDecode = true; }

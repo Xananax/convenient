@@ -1,17 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TAG = function (tag) {
+exports.TOKEN_TAG = function (tag) {
     var text = tag.slice(1);
     return { type: 'TAG', text: text, url: text };
 };
-exports.TEXT = function (text) {
+exports.TOKEN_TEXT = function (text) {
     return ({ type: 'TEXT', text: text });
 };
-exports.LINEBREAK = { type: 'LINEBREAK' };
-exports.makeToken = function (word) {
+exports.TOKEN_LINEBREAK = { type: 'LINEBREAK' };
+exports.word_to_token = function (word) {
     return (word[0] === '#'
-        ? exports.TAG(word)
-        : exports.TEXT(word));
+        ? exports.TOKEN_TAG(word)
+        : exports.TOKEN_TEXT(word));
 };
 /**
  * Takes a string and returns an array
@@ -32,7 +32,7 @@ exports.tokenize = function (text, tokenArr) {
         return tokens.concat(line
             .split(/\s+/)
             .filter(Boolean)
-            .map(exports.makeToken), [exports.LINEBREAK]);
+            .map(exports.word_to_token), [exports.TOKEN_LINEBREAK]);
     }, tokenArr));
 };
 exports.default = exports.tokenize;

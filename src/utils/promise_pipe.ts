@@ -69,7 +69,7 @@ export const promise_pipe3 =
   (a: A): Promise<D> =>
   Promise.resolve(a).then(h).then(g).then(f)
 
-const promise_pipe4 = 
+export const promise_pipe4 = 
   <A, B, C, D, E>
   ( i: MaybePromiseArity1<A, B>
   , h: MaybePromiseArity1<B, C>
@@ -79,7 +79,7 @@ const promise_pipe4 =
   (a: A): Promise<E> =>
   Promise.resolve(a).then(i).then(h).then(g).then(f)
 
-const promise_pipe5 = 
+export const promise_pipe5 = 
   <A, B, C, D, E, F>
   ( j: MaybePromiseArity1<A, B>
   , i: MaybePromiseArity1<B, C>

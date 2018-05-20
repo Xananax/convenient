@@ -40,23 +40,23 @@ export type Token =
   | URLToken
   | PhoneToken
 
-export const TAG = 
+export const TOKEN_TAG = 
   ( tag: string ) => 
   { const text = tag.slice(1)
   ; return { type: 'TAG', text, url: text }
   }
 
-export const TEXT = 
+export const TOKEN_TEXT = 
   ( text: string ) => 
   ( { type: 'TEXT', text } )
 
-export const LINEBREAK = { type: 'LINEBREAK' }
+export const TOKEN_LINEBREAK = { type: 'LINEBREAK' }
 
-export const makeToken = 
+export const word_to_token = 
   ( word: string ) => 
   ( word[0] === '#'
-  ? TAG(word)
-  : TEXT(word)
+  ? TOKEN_TAG(word)
+  : TOKEN_TEXT(word)
   )
 
 /**
@@ -91,8 +91,8 @@ export const tokenize =
       , ... line
           .split(/\s+/)
           .filter(Boolean)
-          .map(makeToken)
-      , LINEBREAK
+          .map(word_to_token)
+      , TOKEN_LINEBREAK
       ]
     , tokenArr
     )

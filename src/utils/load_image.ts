@@ -1,5 +1,5 @@
 import { is_env_browser } from './is_env_browser'
-import { get_image_orientation, Orientation, square } from './get_image_orientation'
+import { get_image_orientation, Orientation, ORIENTATION_SQUARE } from './get_image_orientation'
 
 export interface HTMLImageElementWithDecode extends HTMLImageElement
   { decode: () => Promise<null>
@@ -25,7 +25,7 @@ const serverResponseJSON =
   , url: ''
   , ratioWidth: 1
   , ratioHeight: 1
-  , orientation: square
+  , orientation: ORIENTATION_SQUARE
   }
 
 const serverResponse: ImageLoadReturn = 

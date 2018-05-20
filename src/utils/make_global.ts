@@ -1,6 +1,6 @@
 'use strict'
 
-export const root_object = 
+const root_object = 
   (  ( typeof self === 'object' && self.self === self && self )
   || ( typeof global === 'object' && global.global === global && global )
   // @ts-ignore

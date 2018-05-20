@@ -21,3 +21,5 @@ export declare function pipe<A, B, C, D, E, F>(fn1: Arity1<A, B>, fn2: Arity1<B,
 export declare const pipe1: <A, B>(f: Arity1<A, B>) => Arity1<A, B>;
 export declare const pipe2: <A, B, C>(g: Arity1<A, B>, f: Arity1<B, C>) => Arity1<A, C>;
 export declare const pipe3: <A, B, C, D>(h: Arity1<A, B>, g: Arity1<B, C>, f: Arity1<C, D>) => Arity1<A, D>;
+export declare const pipe4: <A, B, C, D, E>(i: Arity1<A, B>, h: Arity1<B, C>, g: Arity1<C, D>, f: Arity1<D, E>) => Arity1<A, E>;
+export declare const pipe5: <A, B, C, D, E, F>(j: Arity1<A, B>, i: Arity1<B, C>, h: Arity1<C, D>, g: Arity1<D, E>, f: Arity1<E, F>) => Arity1<A, F>;

@@ -43,7 +43,7 @@ export const is_image =
  * to return a boolean if the provided file is an image
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
-export const readImageFromFile = is_env_browser ?
+export const read_image_from_file = is_env_browser ?
   ( file: File
   , isImage: ( file: File, extension: string ) => boolean = is_image
   , useDecode: boolean = true

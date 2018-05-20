@@ -1,4 +1,3 @@
-export declare const root_object: any;
 /**
  * Sets a property on the global object. That is `window` in browser environments, `process` in node, etc
  * @param name

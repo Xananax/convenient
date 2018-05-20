@@ -1,4 +1,4 @@
-export enum SnapType 
+export enum SNAP_TYPE 
   { MID
   , MIN
   , MAX
@@ -27,11 +27,11 @@ export const snap_max =
 export const snap =
   ( resolution: number
   , num: number
-  , type: SnapType = SnapType.MID
+  , type: SNAP_TYPE = SNAP_TYPE.MID
   ): number =>
-  ( type === SnapType.MAX
+  ( type === SNAP_TYPE.MAX
   ? snap_max(resolution, num)
-  : ( type === SnapType.MIN
+  : ( type === SNAP_TYPE.MIN
     ? snap_min(resolution, num)
     : snap_mid(resolution, num)
     )

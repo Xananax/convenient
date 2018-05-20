@@ -15,7 +15,7 @@ var serverResponseJSON = { width: 0,
     url: '',
     ratioWidth: 1,
     ratioHeight: 1,
-    orientation: get_image_orientation_1.square
+    orientation: get_image_orientation_1.ORIENTATION_SQUARE
 };
 var serverResponse = __assign({ image: {} }, serverResponseJSON, { toJSON: function () { return serverResponseJSON; } });
 /**

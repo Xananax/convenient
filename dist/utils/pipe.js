@@ -11,8 +11,8 @@ function pipe() {
         case 1: return exports.pipe1(fns[0]);
         case 2: return exports.pipe2(fns[0], fns[1]);
         case 3: return exports.pipe3(fns[0], fns[1], fns[2]);
-        case 4: return pipe4(fns[0], fns[1], fns[2], fns[3]);
-        case 5: return pipe5(fns[0], fns[1], fns[2], fns[3], fns[4]);
+        case 4: return exports.pipe4(fns[0], fns[1], fns[2], fns[3]);
+        case 5: return exports.pipe5(fns[0], fns[1], fns[2], fns[3], fns[4]);
         default: break;
     }
     return fns.reduce(exports.pipe2);
@@ -31,12 +31,12 @@ exports.pipe3 = function (h, g, f) {
         return f(g(h(a)));
     };
 };
-var pipe4 = function (i, h, g, f) {
+exports.pipe4 = function (i, h, g, f) {
     return function (a) {
         return f(g(h(i(a))));
     };
 };
-var pipe5 = function (j, i, h, g, f) {
+exports.pipe5 = function (j, i, h, g, f) {
     return function (a) {
         return f(g(h(i(j(a)))));
     };

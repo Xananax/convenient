@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var SnapType;
-(function (SnapType) {
-    SnapType[SnapType["MID"] = 0] = "MID";
-    SnapType[SnapType["MIN"] = 1] = "MIN";
-    SnapType[SnapType["MAX"] = 2] = "MAX";
-})(SnapType = exports.SnapType || (exports.SnapType = {}));
+var SNAP_TYPE;
+(function (SNAP_TYPE) {
+    SNAP_TYPE[SNAP_TYPE["MID"] = 0] = "MID";
+    SNAP_TYPE[SNAP_TYPE["MIN"] = 1] = "MIN";
+    SNAP_TYPE[SNAP_TYPE["MAX"] = 2] = "MAX";
+})(SNAP_TYPE = exports.SNAP_TYPE || (exports.SNAP_TYPE = {}));
 exports.snap_mid = function (resolution, num) {
     return (Math.round(num / resolution) * resolution);
 };
@@ -24,10 +24,10 @@ exports.snap_max = function (resolution, num) {
  * @type Number
  */
 exports.snap = function (resolution, num, type) {
-    if (type === void 0) { type = SnapType.MID; }
-    return (type === SnapType.MAX
+    if (type === void 0) { type = SNAP_TYPE.MID; }
+    return (type === SNAP_TYPE.MAX
         ? exports.snap_max(resolution, num)
-        : (type === SnapType.MIN
+        : (type === SNAP_TYPE.MIN
             ? exports.snap_min(resolution, num)
             : exports.snap_mid(resolution, num)));
 };

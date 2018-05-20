@@ -26,4 +26,4 @@ export declare const is_image: (file: File, extension: string) => boolean;
  * to return a boolean if the provided file is an image
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
-export declare const readImageFromFile: (file: File, isImage?: (file: File, extension: string) => boolean, useDecode?: boolean) => Promise<ImageReadReturnNoImage | ImageReadReturn>;
+export declare const read_image_from_file: (file: File, isImage?: (file: File, extension: string) => boolean, useDecode?: boolean) => Promise<ImageReadReturnNoImage | ImageReadReturn>;

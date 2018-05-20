@@ -26,7 +26,7 @@ exports.load_google_maps_api = function (API_KEY, callback) {
     var url = exports.get_maps_javascript_url(API_KEY);
     return load_script_1.load_script(url);
 };
-exports.defaultArgs = { zoom: 18,
+exports.googleMapsDefaultArgs = { zoom: 18,
     width: 720,
     height: 720
 };
@@ -35,7 +35,7 @@ exports.defaultArgs = { zoom: 18,
  * @param options
  */
 exports.get_google_maps_url_static = function (options) {
-    var _a = __assign({}, exports.defaultArgs, options), longitude = _a.longitude, latitude = _a.latitude, zoom = _a.zoom, token = _a.token, width = _a.width, height = _a.height;
+    var _a = __assign({}, exports.googleMapsDefaultArgs, options), longitude = _a.longitude, latitude = _a.latitude, zoom = _a.zoom, token = _a.token, width = _a.width, height = _a.height;
     var coordinates = [latitude, longitude].join(',');
     var googleMapsUrl = "https://maps.googleapis.com/maps/api/staticmap?markers=" + coordinates + "&zoom=" + zoom + "&size=" + width + "x" + height + "&maptype=roadmap&key=" + token;
     return googleMapsUrl;

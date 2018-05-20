@@ -17,7 +17,7 @@ export declare const get_maps_javascript_url: (API_KEY: string) => string;
  * @param callback
  */
 export declare const load_google_maps_api: (API_KEY: string, callback?: Function | undefined) => Promise<{}>;
-export declare const defaultArgs: Partial<GoogleMapsArgs>;
+export declare const googleMapsDefaultArgs: Partial<GoogleMapsArgs>;
 /**
  * Returns a static image, good for embedding a non-interactive map
  * @param options

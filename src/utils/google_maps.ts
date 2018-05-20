@@ -32,7 +32,7 @@ export const load_google_maps_api =
   ; return load_script(url)
   }
 
-export const defaultArgs: Partial<GoogleMapsArgs> =
+export const googleMapsDefaultArgs: Partial<GoogleMapsArgs> =
   { zoom:   18
   , width:  720
   , height: 720
@@ -51,7 +51,7 @@ export const get_google_maps_url_static =
     , token
     , width
     , height
-    } = { ...defaultArgs, ...options } as GoogleMapsArgs
+    } = { ...googleMapsDefaultArgs, ...options } as GoogleMapsArgs
   ; const coordinates = [ latitude, longitude ].join(',')
   // tslint:disable-next-line:max-line-length
   ; const googleMapsUrl = `https://maps.googleapis.com/maps/api/staticmap?markers=${coordinates}&zoom=${zoom}&size=${width}x${height}&maptype=roadmap&key=${token}`

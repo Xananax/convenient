@@ -27,19 +27,19 @@ export interface PhoneToken {
     url: string;
 }
 export declare type Token = TextToken | LinebreakToken | TagToken | EmailToken | URLToken | PhoneToken;
-export declare const TAG: (tag: string) => {
+export declare const TOKEN_TAG: (tag: string) => {
     type: string;
     text: string;
     url: string;
 };
-export declare const TEXT: (text: string) => {
+export declare const TOKEN_TEXT: (text: string) => {
     type: string;
     text: string;
 };
-export declare const LINEBREAK: {
+export declare const TOKEN_LINEBREAK: {
     type: string;
 };
-export declare const makeToken: (word: string) => {
+export declare const word_to_token: (word: string) => {
     type: string;
     text: string;
 };
