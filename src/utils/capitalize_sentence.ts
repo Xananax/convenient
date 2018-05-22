@@ -1,5 +1,5 @@
 /**
- * Capitalizes the first letter of a string. Does *not* capitalise each word!
+ * Capitalizes the first letter of a string. Does *not* capitalize each word!
  * @param sentence 
  */
 export const capitalize_sentence = 
