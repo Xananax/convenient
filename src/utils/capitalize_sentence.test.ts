@@ -1,6 +1,6 @@
 import { capitalize_sentence } from './capitalize_sentence'
 
-describe('capitalize_word', () => {
+describe('capitalize_sentence', () => {
   it('should capitalize the first word', () => {
     expect(capitalize_sentence('word')).toBe('Word')
   })
