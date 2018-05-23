@@ -1,4 +1,4 @@
-import { is_dev } from './is_dev'
+// import { is_dev } from './is_dev'
 
 describe( 'is_dev', () => {
   it( '', () => {

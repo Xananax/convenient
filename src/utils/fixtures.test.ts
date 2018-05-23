@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom'
+import { JSDOM, DOMWindow } from 'jsdom'
 
 const dom = new JSDOM(`<!DOCTYPE html>
 <head>
@@ -25,7 +25,7 @@ const dom = new JSDOM(`<!DOCTYPE html>
 const { window } = dom
 const { document: doc } = window
 
-export { window, doc }
+export { window, doc, JSDOM, DOMWindow }
 
 describe('jsdom', () => it('works', () => {
   expect('jsdom').toBe('jsdom')

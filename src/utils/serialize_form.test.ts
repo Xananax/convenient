@@ -1,4 +1,4 @@
-import { serialize_form } from './serialize_form'
+// import { serialize_form } from './serialize_form'
 
 describe( 'serialize_form', () => {
   it( '', () => {

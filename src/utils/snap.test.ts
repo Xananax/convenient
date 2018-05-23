@@ -1,4 +1,4 @@
-import { snap } from './snap'
+// import { snap } from './snap'
 
 describe( 'snap', () => {
   it( '', () => {
