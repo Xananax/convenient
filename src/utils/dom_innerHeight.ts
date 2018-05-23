@@ -3,12 +3,12 @@
  * @param el 
  */
 export const dom_innerHeight = 
-  ( el: HTMLElement ) => 
-  { const style = window.getComputedStyle(el)
+  ( el: Element, _window= window ) => 
+  { const style = _window.getComputedStyle(el)
   ; return ( 
       el.clientHeight
-      - parseInt(style.getPropertyValue('padding-top'), 10)
-      - parseInt(style.getPropertyValue('padding-bottom'), 10)
+      - parseInt(style.getPropertyValue('padding-top') || '0', 10)
+      - parseInt(style.getPropertyValue('padding-bottom') || '0', 10)
     )
   }
 

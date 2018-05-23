@@ -4,9 +4,13 @@
  */
 export const get_file_extension = 
   ( filename: string ) => 
-  ( filename 
-  ? filename.substring(filename.lastIndexOf('.') + 1).toLowerCase().trim()
-  : ''
-  )
+  { if (!filename)
+    { return ''
+    }
+  ; const index = filename.lastIndexOf('.')
+  ; if (index <= 0)
+    { return '' }
+  ; return filename.substring(index + 1).toLowerCase().trim() 
+  }
 
 export default get_file_extension

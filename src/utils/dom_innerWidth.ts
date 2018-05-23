@@ -3,12 +3,12 @@
  * @param el 
  */
 export const dom_innerWidth = 
-  ( el: HTMLElement ) =>
-  { const style = window.getComputedStyle(el)
+  ( el: Element, _window= window ) =>
+  { const style = _window.getComputedStyle(el)
   ; return (
       el.clientWidth
-      - parseInt(style.getPropertyValue('padding-left'), 10)
-      - parseInt(style.getPropertyValue('padding-right'), 10)
+      - parseInt(style.getPropertyValue('padding-left') || '0', 10)
+      - parseInt(style.getPropertyValue('padding-right') || '0', 10)
     )
   }
 
