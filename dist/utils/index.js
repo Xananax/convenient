@@ -44,5 +44,4 @@ __export(require("./snap"));
 __export(require("./throttle"));
 __export(require("./to_slug"));
 __export(require("./tokenize"));
-__export(require("./type_of_return"));
 //# sourceMappingURL=index.js.map
