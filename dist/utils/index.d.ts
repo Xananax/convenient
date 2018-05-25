@@ -8,6 +8,7 @@ export * from './dom_innerWidth';
 export * from './get_file_extension';
 export * from './get_file_input_files';
 export * from './get_image_orientation';
+export * from './get_input_value';
 export * from './get_random_int_in_range';
 export * from './get_random_num_in_range';
 export * from './get_season_from_month';

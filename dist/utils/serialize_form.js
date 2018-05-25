@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var get_file_input_files_1 = require("./get_file_input_files");
+var get_input_value_1 = require("./get_input_value");
 /**
  * Extracts all the fields from an html form, gets all their values,
  * and returns the results.
@@ -23,50 +23,10 @@ exports.serialize_form = function (form) {
     var inputs = Array.prototype.slice.call(form.elements);
     var serialized = {};
     inputs.forEach(function (input) {
-        var nodeName = input.nodeName, name = input.name, type = input.type, value = input.value, checked = input.checked;
-        if (!name || nodeName === 'BUTTON') {
-            return;
+        var value = get_input_value_1.get_input_value(input);
+        if (value !== null) {
+            serialized[input.name] = value;
         }
-        ;
-        if (type === 'checkbox') {
-            serialized[name] = !!checked;
-            return;
-        }
-        ;
-        if (typeof value === 'undefined' || value === '') {
-            return;
-        }
-        ;
-        if (type === 'radio') {
-            if (!checked) {
-                return;
-            }
-            ;
-            serialized[name] = value;
-            return;
-        }
-        ;
-        if (type === 'number' || type === 'range') {
-            if (!value) {
-                serialized[name] = 0;
-                return;
-            }
-            ;
-            serialized[name] = parseFloat(value);
-            return;
-        }
-        ;
-        if (type === 'file') {
-            var files = get_file_input_files_1.get_file_input_files(input);
-            if (!files) {
-                return;
-            }
-            ;
-            serialized[name] = files;
-            return;
-        }
-        ;
-        serialized[name] = value;
     });
     var ret = { name: formName,
         action: action,

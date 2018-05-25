@@ -14,12 +14,7 @@ function fileList_to_array(files, first) {
 }
 exports.fileList_to_array = fileList_to_array;
 exports.empty_files = [];
-/**
- * extract files from the input. Returns a single file if the input doesn't have the 'multiple' flag.
- * Returns null if no files were found
- * @param input a file input
- */
-exports.get_file_input_files = function (input) {
+function get_file_input_files(input) {
     var multiple = input.multiple, files = input.files;
     if (files) {
         var single = !!!multiple;
@@ -30,6 +25,7 @@ exports.get_file_input_files = function (input) {
     return (multiple
         ? exports.empty_files
         : null);
-};
-exports.default = exports.get_file_input_files;
+}
+exports.get_file_input_files = get_file_input_files;
+exports.default = get_file_input_files;
 //# sourceMappingURL=get_file_input_files.js.map

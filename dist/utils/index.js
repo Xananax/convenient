@@ -13,6 +13,7 @@ __export(require("./dom_innerWidth"));
 __export(require("./get_file_extension"));
 __export(require("./get_file_input_files"));
 __export(require("./get_image_orientation"));
+__export(require("./get_input_value"));
 __export(require("./get_random_int_in_range"));
 __export(require("./get_random_num_in_range"));
 __export(require("./get_season_from_month"));

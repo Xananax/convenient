@@ -1,4 +1,4 @@
-import { get_file_input_files } from './get_file_input_files';
+import { get_input_value } from './get_input_value'
 
 export interface SerializedFormValues
   { [key: string]: string | number | File | File[]
@@ -35,43 +35,11 @@ export const serialize_form =
   ; const target = form.getAttribute('target') || ''
   ; const inputs = Array.prototype.slice.call(form.elements)
   ; const serialized = {}
-  ; inputs.forEach( 
-    ( input: HTMLInputElement ) =>
-    { const { nodeName, name, type, value, checked } = input
-    ; if ( !name || nodeName === 'BUTTON')
-      { return;
+  ; inputs.forEach( (input: HTMLInputElement ) => {
+      const value = get_input_value(input)
+      if (value !== null) {
+        serialized[input.name] = value
       }
-    ; if ( type === 'checkbox' )
-      { serialized[name] = !!checked
-      ; return
-      }
-    ; if ( typeof value === 'undefined' || value === '' )
-      { return
-      }
-    ; if ( type === 'radio' )
-      { if (!checked)
-        { return 
-        }
-      ; serialized[name] = value
-      ; return
-      }
-    ; if ( type === 'number' || type === 'range' )
-      { if (!value)
-        { serialized[name] = 0
-        ; return
-        }
-      ; serialized[name] = parseFloat(value)
-      ; return
-      }
-    ; if ( type === 'file' )
-      { const files = get_file_input_files(input)
-      ; if ( !files )
-        { return
-        }
-      ; serialized[name] = files
-      ; return
-      }
-    ; serialized[name] = value
     })
   ; const ret = 
     { name: formName
