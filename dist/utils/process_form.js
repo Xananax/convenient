@@ -39,8 +39,8 @@ exports.process_form = function (validate, transform) {
     var _transform = exports.transform_form(transform);
     var process = function (serialized) {
         return Promise.resolve(serialized)
-            .then(_validate)
-            .then(_transform);
+            .then(_transform)
+            .then(_validate);
     };
     return process;
 };

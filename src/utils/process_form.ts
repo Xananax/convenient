@@ -56,8 +56,8 @@ export const process_form =
   ; const process = 
     ( serialized: SerializedForm ) =>
     Promise.resolve(serialized)
-      .then(_validate)
       .then(_transform)
+      .then(_validate)
   ; return process
   }
 

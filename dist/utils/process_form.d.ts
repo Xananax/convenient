@@ -13,5 +13,5 @@ export interface ValidatedForm extends SerializedForm {
 }
 export declare const transform_form: (transform?: Transformer | undefined) => (serialized: SerializedForm) => Promise<SerializedForm>;
 export declare const validate_form: (validate?: Validator | undefined) => (serialized: SerializedForm) => Promise<ValidatedForm>;
-export declare const process_form: (validate?: Validator | undefined, transform?: Transformer | undefined) => (serialized: SerializedForm) => Promise<SerializedForm>;
+export declare const process_form: (validate?: Validator | undefined, transform?: Transformer | undefined) => (serialized: SerializedForm) => Promise<ValidatedForm>;
 export default process_form;
