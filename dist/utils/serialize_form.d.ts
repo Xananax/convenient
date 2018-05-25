@@ -1,10 +1,11 @@
+export interface SerializedFormValues {
+    [key: string]: string | number | File | File[];
+}
 export interface SerializedForm {
     name: string;
     action: string;
     method: string;
-    values: {
-        [key: string]: string | number | File | File[];
-    };
+    values: SerializedFormValues;
     enctype: string;
     target: string;
 }
