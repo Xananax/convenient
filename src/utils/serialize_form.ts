@@ -1,12 +1,14 @@
 import { get_file_input_files } from './get_file_input_files';
 
+export interface SerializedFormValues
+  { [key: string]: string | number | File | File[]
+  }
+
 export interface SerializedForm
   { name: string
   ; action: string
   ; method: string
-  ; values: 
-    { [key: string]: string | number | File | File[]
-    }
+  ; values: SerializedFormValues
   ; enctype: string
   ; target: string
   }
