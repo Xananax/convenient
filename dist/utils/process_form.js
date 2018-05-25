@@ -8,7 +8,6 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     return t;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var serialize_form_1 = require("./serialize_form");
 exports.transform_form = function (transform) {
     return function (serialized) {
         return (transform
@@ -38,9 +37,8 @@ exports.validate_form = function (validate) {
 exports.process_form = function (validate, transform) {
     var _validate = exports.validate_form(validate);
     var _transform = exports.transform_form(transform);
-    var process = function (form) {
-        return Promise.resolve(form)
-            .then(serialize_form_1.serialize_form)
+    var process = function (serialized) {
+        return Promise.resolve(serialized)
             .then(_validate)
             .then(_transform);
     };

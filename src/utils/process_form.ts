@@ -1,4 +1,4 @@
-import { SerializedForm, SerializedFormValues, serialize_form } from './serialize_form'
+import { SerializedForm, SerializedFormValues } from './serialize_form'
 
 export interface Transformer
   { ( input: SerializedForm ): SerializedFormValues | void | null
@@ -54,9 +54,8 @@ export const process_form =
   { const _validate = validate_form(validate)
   ; const _transform = transform_form(transform)
   ; const process = 
-    ( form: HTMLFormElement ) =>
-    Promise.resolve(form)
-      .then(serialize_form)
+    ( serialized: SerializedForm ) =>
+    Promise.resolve(serialized)
       .then(_validate)
       .then(_transform)
   ; return process
