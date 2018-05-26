@@ -1,17 +1,24 @@
 import { get_file_input_files, HTMLInputElementFile } from './get_file_input_files';
 
+export type InputValue = 
+  | string
+  | number
+  | boolean
+  | File
+  | File[] 
+
 /**
  * Returns the value for a given field
  *  - files inputs will return an array of files (rather than a `FileList`)
  *  - if a file input does not have the `multiple` property, it will return a single file
  *  - checkboxes will return booleans
  *  - number and range inputs will return floats (i.e., numbers)
- *  - any field with an undefined value, or without a name will be skipped and not serialized
+ *  - any field without a name will be skipped and not serialized
  *  - any button will be skipped
  * @param input 
  */
 export const get_input_value = 
-  ( input: HTMLInputElement ) =>
+  ( input: HTMLInputElement ): InputValue | null =>
   { const { nodeName, name, type, value, checked } = input
   ; if ( !name || nodeName === 'BUTTON')
     { return null;
@@ -20,7 +27,7 @@ export const get_input_value =
     { return !!checked
     }
   ; if ( typeof value === 'undefined' || value === '' )
-    { return null;
+    { return '';
     }
   ; if ( type === 'radio' )
     { if (!checked)

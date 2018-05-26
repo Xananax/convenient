@@ -7,7 +7,7 @@ var get_file_input_files_1 = require("./get_file_input_files");
  *  - if a file input does not have the `multiple` property, it will return a single file
  *  - checkboxes will return booleans
  *  - number and range inputs will return floats (i.e., numbers)
- *  - any field with an undefined value, or without a name will be skipped and not serialized
+ *  - any field without a name will be skipped and not serialized
  *  - any button will be skipped
  * @param input
  */
@@ -22,7 +22,7 @@ exports.get_input_value = function (input) {
     }
     ;
     if (typeof value === 'undefined' || value === '') {
-        return null;
+        return '';
     }
     ;
     if (type === 'radio') {

@@ -1,7 +1,7 @@
-import { get_input_value } from './get_input_value'
+import { get_input_value, InputValue } from './get_input_value'
 
 export interface SerializedFormValues
-  { [key: string]: string | number | File | File[]
+  { [key: string]: InputValue
   }
 
 export interface SerializedForm

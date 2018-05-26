@@ -1,12 +1,20 @@
-import { SerializedForm, SerializedFormValues } from './serialize_form'
+import { SerializedForm } from './serialize_form'
+import { InputValue } from './get_input_value'
 
-export interface Transformer
-  { ( input: SerializedForm ): SerializedFormValues | void | null
+export interface STOP
+  { stop: true }
+
+export const stop: STOP = { stop: true }
+
+export interface ValidationObserver<T>
+  { ( key: string, value: InputValue, form: SerializedForm, skip: STOP ):  T | undefined | Promise<T | undefined>
   }
 
-export interface Validator
-  { ( input: SerializedForm ):  ValidatorErrorsDictionary | void | null
-  }
+export interface Transformer extends ValidationObserver<any>
+  {}
+
+export interface Validator extends ValidationObserver<string>
+  {}
 
 export interface ValidatorErrorsDictionary
   { [key: string]: string }
@@ -15,17 +23,61 @@ export interface ValidatedForm extends SerializedForm
   { errors?: ValidatorErrorsDictionary
   }
 
+export const runObserver = 
+  <T>
+  ( observer: ValidationObserver<T>, serialized: SerializedForm ) =>
+  { const newValues: T = {} as T
+  ; let oneKeyChanged = false
+  ; return Object.keys(serialized.values)
+    .map
+    ( ( key ) => 
+      ( ( doStop: any ) => 
+        ( doStop === stop
+        ? Promise.resolve(stop)
+        : Promise.resolve()
+          .then
+          ( () => observer(key, serialized.values[key], serialized, stop) )
+          .then
+          ( ( response ) => 
+            { if ( typeof response !== 'undefined' )
+              { if ( response === stop as any )
+                { return stop;
+                }
+              ; oneKeyChanged = true
+              ; newValues[key] = response
+              }
+            ; return true
+            }
+          )
+        )
+      )
+    )
+    .reduce
+    ( ( prev, curr ) => prev.then(curr)
+    , Promise.resolve({})
+    )
+    .then
+    ( () =>
+      { if (oneKeyChanged)
+        { return newValues
+        }
+      ; return null
+      }
+    )
+  }
+
 export const transform_form = 
   ( transform?: Transformer ) =>
-  ( serialized: SerializedForm ): Promise<SerializedForm> => 
+  ( serialized: SerializedForm ) => 
   ( transform
   ? Promise
     .resolve()
-    .then( () => transform( serialized ) )
-    .then(
-      ( retValue ) => 
+    .then
+    ( () => runObserver(transform, serialized) )
+    .then
+    ( ( retValue ) => 
       ( !!retValue
-      ? { ...serialized, values: retValue }
+      ? { ...serialized, values: {...serialized.values, retValue } }
       : serialized
       )
     )
@@ -38,9 +90,10 @@ export const validate_form =
   ( validate
   ? Promise
     .resolve()
-    .then( () => validate( serialized ) )
-    .then(
-      ( errors ) => 
+    .then
+    ( () => runObserver(validate, serialized) )
+    .then
+    ( ( errors ) => 
       ( !!errors
       ? { ...serialized, errors }
       : serialized
