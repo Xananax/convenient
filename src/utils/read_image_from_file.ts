@@ -29,7 +29,9 @@ const serverResponse: ImageReadReturnNoImage =
 
 export const is_image = 
   ( file: File, extension: string ) =>
-  ( /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension)
+  ( file && 
+    ( ( file.type && file.type.split('/')[0] === 'image' ) || /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension)
+    )
   )
 
 /**
@@ -40,22 +42,26 @@ export const is_image =
  * This function has a custom toJSON method that removes non-serializable data
  * @param file 
  * @param isImage a function that receives the file and the extension, and has
- * to return a boolean if the provided file is an image
+ * to return a boolean if the provided file is an image. If `true` is passed, a default function will be used,
+ * which checks for mime-type that begins with `image/` and/or most common extensions (gif/png/jpg...)
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 export const read_image_from_file = is_env_browser ?
   ( file: File
-  , isImage: ( file: File, extension: string ) => boolean = is_image
+  , isImage?: ( file: File, extension: string ) => boolean | boolean
   , useDecode: boolean = true
-  ): Promise<ImageReadReturnNoImage|ImageReadReturn> =>
-  new Promise( 
+  ): Promise<ImageReadReturnNoImage|ImageReadReturn> => 
+  { if ( typeof isImage === 'boolean' && isImage === true )
+    { isImage = is_image
+    }
+  ; return new Promise( 
     ( resolve, reject ) => 
     { if (!file)
       { return reject(new Error('no file provided'))
       }
     ; const name = file.name
     ; const extension = get_file_extension(name)
-    ; if (!isImage(file, extension))
+    ; if (isImage && !isImage(file, extension))
       { const ret = { file, name, extension, toJSON: () => ({ name, extension }) }
       ; return resolve(ret)
       }
@@ -78,4 +84,5 @@ export const read_image_from_file = is_env_browser ?
       )
       .catch(reject)
     }
-  ) : (file?: File): Promise<ImageReadReturnNoImage|ImageReadReturn> => Promise.resolve(serverResponse) 
+  )
+  } : (file?: File): Promise<ImageReadReturnNoImage|ImageReadReturn> => Promise.resolve(serverResponse) 

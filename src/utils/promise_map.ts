@@ -1,11 +1,4 @@
-
-export interface STOP
-  { stop: true
-  }
-
-export const stop: STOP =
-  { stop: true 
-  }
+import { stop, STOP } from './symbols'
 
 export interface PromiseMapper<T>
   { <O extends {}, K extends keyof O>
