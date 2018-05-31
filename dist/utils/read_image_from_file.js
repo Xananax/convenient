@@ -26,7 +26,8 @@ var serverResponse = { file: {},
     toJSON: function () { return ({ name: '', extension: '' }); }
 };
 exports.is_image = function (file, extension) {
-    return (/gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension));
+    return (file &&
+        ((file.type && file.type.split('/')[0] === 'image') || /gif|png|jpe?g|tiff?|webp|bmp|ico|svg/.test(extension)));
 };
 /**
  * If the provided file is an image, this function will load the image
@@ -36,13 +37,17 @@ exports.is_image = function (file, extension) {
  * This function has a custom toJSON method that removes non-serializable data
  * @param file
  * @param isImage a function that receives the file and the extension, and has
- * to return a boolean if the provided file is an image
+ * to return a boolean if the provided file is an image. If `true` is passed, a default function will be used,
+ * which checks for mime-type that begins with `image/` and/or most common extensions (gif/png/jpg...)
  * @param useDecode if true, will use `img.decode()` to prevent the browser from slowing down while loading the image
  */
 exports.read_image_from_file = is_env_browser_1.is_env_browser ?
     function (file, isImage, useDecode) {
-        if (isImage === void 0) { isImage = exports.is_image; }
         if (useDecode === void 0) { useDecode = true; }
+        if (typeof isImage === 'boolean' && isImage === true) {
+            isImage = exports.is_image;
+        }
+        ;
         return new Promise(function (resolve, reject) {
             if (!file) {
                 return reject(new Error('no file provided'));
@@ -50,7 +55,7 @@ exports.read_image_from_file = is_env_browser_1.is_env_browser ?
             ;
             var name = file.name;
             var extension = get_file_extension_1.get_file_extension(name);
-            if (!isImage(file, extension)) {
+            if (isImage && !isImage(file, extension)) {
                 var ret = { file: file, name: name, extension: extension, toJSON: function () { return ({ name: name, extension: extension }); } };
                 return resolve(ret);
             }

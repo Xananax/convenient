@@ -1,7 +1,4 @@
-export interface STOP {
-    stop: true;
-}
-export declare const stop: STOP;
+import { STOP } from './symbols';
 export interface PromiseMapper<T> {
     <O extends {}, K extends keyof O>(value: O[K], key: K, obj: O, stop: STOP): T | undefined | STOP | Promise<T | undefined | STOP>;
 }

@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.stop = { stop: true
-};
+var symbols_1 = require("./symbols");
 /**
  * Async property mapper which runs every property of an object
  * through a mapper function, and returns a new object with
@@ -27,14 +26,14 @@ exports.promise_map = function (observer, obj) {
     return Object.keys(obj)
         .map(function (key) {
         return (function (previousReturnValue) {
-            return (previousReturnValue === exports.stop
-                ? Promise.resolve(exports.stop)
+            return (previousReturnValue === symbols_1.stop
+                ? Promise.resolve(symbols_1.stop)
                 : Promise.resolve()
-                    .then(function () { return observer(obj[key], key, obj, exports.stop); })
+                    .then(function () { return observer(obj[key], key, obj, symbols_1.stop); })
                     .then(function (response) {
                     if (typeof response !== 'undefined') {
-                        if (response === exports.stop) {
-                            return exports.stop;
+                        if (response === symbols_1.stop) {
+                            return symbols_1.stop;
                         }
                         ;
                         oneKeyChanged = true;
