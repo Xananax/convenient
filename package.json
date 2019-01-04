@@ -22,6 +22,7 @@
     "package:build": "tsc --project tsconfig.prod.json && node prepublish.js",
     "package:clean": "rimraf ./dist",
     "start": "npm run demo:start",
+    "push": "npm run package && cd dist && npm publish",
     "package": "npm run package:clean && npm run package:build",
     "predeploy": "npm run package && npm run demo",
     "deploy": "gh-pages -d build"
