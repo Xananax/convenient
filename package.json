@@ -1,18 +1,18 @@
 {
   "name": "convenable",
   "version": "0.0.966",
-  "description": "a bunch of disparate, but convenient functions",
+  "description": "A bunch of disparate, but convenient functions",
   "license": "MIT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
-  "homepage": "https://github.com/Xananax/convenient/",
-  "author": "xananax@yelostudio.com",
+  "homepage": "https://gitlab.com/xananax-npm/convenient",
+  "author": "me@xananax.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Xananax/convenient/"
+    "url": "git+https://gitlab.com/xananax-npm/convenient"
   },
   "bugs": {
-    "url": "https://github.com/Xananax/convenient/issues"
+    "url": "https://gitlab.com/xananax-npm/convenient/issues"
   },
   "scripts": {
     "demo:start": "BROWSER=none react-scripts start",
