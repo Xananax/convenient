@@ -19,7 +19,7 @@
     "demo:build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "demo": "npm run demo:build",
-    "package:build": "tsc --project tsconfig.prod.json",
+    "package:build": "tsc --project tsconfig.prod.json && node prepublish.js",
     "package:clean": "rimraf ./dist",
     "start": "npm run demo:start",
     "package": "npm run package:clean && npm run package:build",
