@@ -1,9 +1,13 @@
 import 
   { CreateElement
-  , InputHTMLAttributes
-  , ReactNode
-  , AllHTMLAttributes
   } from './types'
+
+import
+  { InputHTMLAttributes
+    , ReactNode
+    , AllHTMLAttributes
+  } from 'react'
+  
 import { SerializedFormValues } from '../../serialize_form';
 
 export type MultipleInputItem = 
@@ -158,18 +162,18 @@ export const normalizeInputProps =
 export const FormControl = 
   ( el: CreateElement ) => 
   { const _InputTypeHidden = InputTypeHidden(el)
-  ; const _InputGeneric = InputGeneric(el)
+  //; const _InputGeneric = InputGeneric(el)
   ; const _Label = Label(el)
   ; const Control = 
     ( _props: InputProperties<any>
     ) => 
     { const 
       { tag
-      , isCheckable
+      //, isCheckable
       , className
       , labelClass
-      , errorClass
-      , error
+      //, errorClass
+      //, error
       , id
       , inputProps: props
       } = normalizeInputProps(_props) 
@@ -177,26 +181,29 @@ export const FormControl =
     ; if ( type === 'hidden')
       { return _InputTypeHidden(props)
       }
-    ; const errorsElements = 
-      ( error && error.length 
+    /** 
+     * 
+     ; const errorsElements = 
+     ( error && error.length 
       ? Array.isArray(error)
       ?  error.map
-        ( ( err: string ) => 
-          ( _Label
-            ( id
-            , errorClass
-            , props
-            , el
-              ( 'span'
-              , null
-              , err
-              )
-            )
+      ( ( err: string ) => 
+      ( _Label
+        ( id
+          , errorClass
+          , props
+          , el
+          ( 'span'
+          , null
+          , err
           )
-        )
-      : _Label( id, errorClass, props, el('span', null, error))
-      : false
-      )
+          )
+          )
+          )
+          : _Label( id, errorClass, props, el('span', null, error))
+          : false
+          )
+    */
     ; if ( type === 'select' || type === 'radio' )
       { ; return el
         ( tag

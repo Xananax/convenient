@@ -41,16 +41,16 @@ export type Token =
   | PhoneToken
 
 export const TOKEN_TAG = 
-  ( tag: string ) => 
+  ( tag: string ):TagToken => 
   { const text = tag.slice(1)
   ; return { type: 'TAG', text, url: text }
   }
 
 export const TOKEN_TEXT = 
-  ( text: string ) => 
+  ( text: string ):TextToken => 
   ( { type: 'TEXT', text } )
 
-export const TOKEN_LINEBREAK = { type: 'LINEBREAK' }
+export const TOKEN_LINEBREAK:LinebreakToken = { type: 'LINEBREAK' }
 
 export const word_to_token = 
   ( word: string ) => 

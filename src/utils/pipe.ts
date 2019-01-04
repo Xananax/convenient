@@ -80,3 +80,5 @@ export const pipe5 =
   ): Arity1<A, F> =>
   (a: A): F =>
   f(g(h(i(j(a)))))
+
+export default pipe

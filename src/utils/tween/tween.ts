@@ -1,5 +1,3 @@
-// import { easing } from './easing'
-// import { interpolation } from './interpolation'
 import { EasingEquation } from './easing/easing'
 import { InterpolationFunction } from './interpolation/interpolation';
 

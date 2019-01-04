@@ -51,3 +51,5 @@ export const serialize_form =
     }
   ; return ret
   }
+
+export default serialize_form

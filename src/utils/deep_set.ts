@@ -46,7 +46,7 @@ export const deep_set =
     ; currentObj = currentObj[key]
     ; p++
     }
-  ; if (typeof val === 'function'){
+  ; if (typeof val === 'function') {
       currentObj[path[max]] = (val as Setter<T>)(currentObj[path[max]], count, path, obj)  
     } else
     { currentObj[path[max]] = val

@@ -6,7 +6,7 @@ export interface Fetch
 
 export interface FetchPatcher extends Fetch
   // tslint:disable-next-line:max-line-length
-  { ( request?: string | Request | undefined, init?: (RequestInit & { invalidate?: boolean | undefined }) | undefined): Promise<any>
+  { ( request?: string | Request, init?: (RequestInit & { invalidate?: boolean | undefined }) | undefined): Promise<any>
   ; onSuccess: (listener: FetchPatcherListener<FetchPatcherEventSuccess>) => () => void
   ; onError: (listener: FetchPatcherListener<FetchPatcherEventError>) => () => void
   ; onLoad: (listener: FetchPatcherListener<FetchPatcherEventLoad>) => () => void
@@ -48,7 +48,7 @@ export interface FetchPatcherListener<E extends FetchPatcherEvent>
  * it also caches responses
  * @param _fetch 
  */
-export const fetch_dispatcher = ( _fetch: Fetch = fetch ): FetchPatcher => 
+export const fetch_dispatcher = ( _fetch: Fetch = fetch as Fetch ): FetchPatcher => 
   { const successListeners: FetchPatcherListener<FetchPatcherEventSuccess>[] = []
   ; const errorListeners: FetchPatcherListener<FetchPatcherEventError>[] = []
   ; const loadingListeners: FetchPatcherListener<FetchPatcherEventLoad>[] = []

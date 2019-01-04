@@ -9,6 +9,7 @@
         "package-lock.json":true,
         ".vscode":true,
         ".gitignore":true,
+        ".npmignore":true
     },
     "editor.tabSize": 2,
     "editor.renderWhitespace": "boundary",

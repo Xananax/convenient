@@ -86,3 +86,5 @@ export const read_image_from_file = is_env_browser ?
     }
   )
   } : (file?: File): Promise<ImageReadReturnNoImage|ImageReadReturn> => Promise.resolve(serverResponse) 
+
+export default read_image_from_file

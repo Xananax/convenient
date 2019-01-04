@@ -31,13 +31,13 @@ export const promise_map =
   ; let oneKeyChanged = false
   ; return Object.keys(obj)
     .map
-    ( ( key: K ) => 
+    ( ( key: string ) => 
       ( ( previousReturnValue: any ) => 
         ( previousReturnValue === stop
         ? Promise.resolve(stop)
         : Promise.resolve()
           .then
-          ( () => observer(obj[key], key, obj, stop) )
+          ( () => observer(obj[key], key as K, obj, stop) )
           .then
           ( ( response ) => 
             { if ( typeof response !== 'undefined' )

@@ -1,1 +1,0 @@
-{"version":3,"file":"capitalize_sentence.js","sourceRoot":"","sources":["../../src/utils/capitalize_sentence.ts"],"names":[],"mappings":";;AAAA;;;GAGG;AACU,QAAA,mBAAmB,GAC9B,UAAE,QAAiB;IACnB,OAAA,CAAE,QAAQ;QACV,CAAC,CAAC,QAAQ,CAAC,CAAC,CAAC,CAAC,WAAW,EAAE,GAAG,QAAQ,CAAC,KAAK,CAAC,CAAC,CAAC;QAC/C,CAAC,CAAC,EAAE,CACH;AAHD,CAGC,CAAA;AAEH,kBAAe,2BAAmB,CAAA"}

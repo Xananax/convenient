@@ -23,10 +23,10 @@ export const load_script =
     ; const script = document.createElement('script')
     ; script.type = 'text/javascript';
     ; if ('readyState' in script)
-      { script['onreadystatechange'] = 
+      { (script as any)['onreadystatechange'] = 
         () => 
         { if (script['readyState'] === 'loaded' || script['readyState'] === 'complete')
-          { script['onreadystatechange'] = null
+          { (script as any)['onreadystatechange'] = null
           ; cache[url] = true
           ; onLoad()
           }
@@ -34,12 +34,19 @@ export const load_script =
       }
       else
       { script.onload = onLoad
-      ; script.onerror = 
-        ( evt: ErrorEvent | Error ) =>
-        { reject( new Error(evt.message || `Could not load file`) )
+      ; (script as any).onerror = 
+        ( evt: ErrorEvent | string ) =>
+        { if(typeof evt === 'string')
+          {
+          ; reject( new Error(evt || `Could not load file`) )
+          ; return
+          }
+        ; reject( new Error(evt.message || `Could not load file`) )
         }
       }
     ; script.src = url;
     ; document.getElementsByTagName('head')[0].appendChild(script);
     }
   ) : ( url: string, bypassCache = false ) => Promise.resolve(url)
+
+export default load_script

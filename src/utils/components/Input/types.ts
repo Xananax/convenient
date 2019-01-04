@@ -21,16 +21,7 @@ import
   , Component
   , ComponentClass
   , ReactElement
-  , LabelHTMLAttributes
-  , AllHTMLAttributes
   } from 'react'
-
-export 
-  { InputHTMLAttributes
-  , LabelHTMLAttributes
-  , AllHTMLAttributes
-  , ReactNode
-  }
 
 export interface CreateElement
   { ( type: 'input'

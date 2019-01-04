@@ -14,24 +14,12 @@
   "bugs": {
     "url": "https://github.com/Xananax/convenient/issues"
   },
-  "devDependencies": {
-    "@types/jest": "^22.2.3",
-    "@types/node": "latest",
-    "@types/react": "latest",
-    "@types/react-dom": "latest",
-    "gh-pages": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts-ts": "latest",
-    "rimraf": "latest",
-    "typescript": "latest"
-  },
   "scripts": {
-    "demo:start": "react-scripts-ts start",
-    "demo:build": "react-scripts-ts build",
-    "test": "react-scripts-ts test --env=jsdom",
+    "demo:start": "BROWSER=none react-scripts start",
+    "demo:build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
     "demo": "npm run demo:build",
-    "package:build": "tsc --moduleResolution Node --module commonjs --target es5 --outDir dist --declaration",
+    "package:build": "tsc --project tsconfig.prod.json",
     "package:clean": "rimraf ./dist",
     "start": "npm run demo:start",
     "package": "npm run package:clean && npm run package:build",
@@ -42,8 +30,27 @@
     "utils",
     "typescript"
   ],
-  "dependencies": {
-    "@types/jsdom": "^11.0.4",
-    "jsdom": "^11.10.0"
-  }
+  "devDependencies": {
+    "@types/jest": "^23.3.11",
+    "@types/jsdom": "^12.2.1",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "gh-pages": "^2.0.1",
+    "jsdom": "^13.1.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts": "^2.1.2",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.2.2"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

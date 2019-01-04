@@ -1,10 +1,6 @@
 import { is_env_browser } from './is_env_browser'
 import { get_image_orientation, Orientation, ORIENTATION_SQUARE } from './get_image_orientation'
 
-export interface HTMLImageElementWithDecode extends HTMLImageElement
-  { decode: () => Promise<null>
-  }
-
 export interface ImageLoadReturnJSON
   { width: number
   ; height: number
@@ -15,7 +11,7 @@ export interface ImageLoadReturnJSON
   }
 
 export interface ImageLoadReturn extends ImageLoadReturnJSON
-  { image: HTMLImageElement | HTMLImageElementWithDecode
+  { image: HTMLImageElement
   ; toJSON: () => ImageLoadReturnJSON
   }
 
@@ -72,23 +68,30 @@ export const load_image = is_env_browser ?
     ; return resolve(ret)
     }
   ; const onerror = 
-    ( evt: ErrorEvent | Error ) => 
+    ( evt: ErrorEvent | string ) => 
     { clean()
+    ; if(typeof evt === 'string')
+      { reject(new Error(evt || 'could not load file'))
+      ; return
+      }
     ; reject(new Error(evt.message || 'could not load file'))
     }
   ; const clean = 
     () =>
-    { image.onerror = null
+    { 
+    ; (image as any).onerror = null
     ; image.onload = null
     }
-  ; image.onerror = onerror
+  ; (image as any).onerror = onerror
   ; image.src = src
-  ; if ( useDecode && ( 'decode' in (image as HTMLImageElementWithDecode) ) )
+  ; if ( useDecode && ( 'decode' in ( image ) ) )
     { image.src = src
-    ; (image as HTMLImageElementWithDecode).decode().then(onload).catch(onerror)
+    ; image.decode().then(onload).catch(onerror)
     }
     else
     { image.onload = onload
     }
   })
   : ( src: string ): Promise<ImageLoadReturn> => Promise.resolve(serverResponse)
+
+export default load_image

@@ -27,3 +27,5 @@ export const deep_get =
   ; const notFound = ( obj === undefined || p < length)
   ; return notFound ? defaultValue : obj
   }
+
+export default deep_get

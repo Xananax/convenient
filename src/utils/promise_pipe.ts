@@ -89,3 +89,5 @@ export const promise_pipe5 =
   ): Promised<A, F> =>
   (a: A): Promise<F> =>
   Promise.resolve(a).then(j).then(i).then(h).then(g).then(f)
+
+export default promise_pipe
