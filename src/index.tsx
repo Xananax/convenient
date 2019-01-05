@@ -7,32 +7,35 @@ import
   , process_form
   } from './main'
 
+
 const fakeRenderMarkdown = (text: string) => 
   text
     .replace(/(#+)(.*?)\n/g, (_, h, t) => `<h${h.length}>${t}</h${h.length}>`)
     .replace(/\n/g, `<br/>`)
 
-const processForm = process_form({ 
-  validate: ({values}, errors) => new Promise((resolve) => {
-    if (!values.password || typeof values.password !== 'string' || values.password.length < 6) {
-      errors.password = 'password must be over 6 chars'
+const processForm = process_form({
+  validate: ({ values }, errors) => new Promise((resolve) => {
+    if(!values){ return resolve() }
+    if (!values.main.password[0] || typeof values.main.password[0] !== 'string' || values.main.password[0].length < 6) {
+      errors.password_0 = 'password must be over 6 chars'
     }
-    if (values.password_confirm !== values.password ) {
-      errors.password_confirm = 'passwords dont match'
+    if (values.main.password[1] !== values.main.password[0] ) {
+      errors.password_1 = 'passwords dont match'
     }
-    if (values.username) {
-      if (values.username === 'xananax') {
+    if(!values.main.username){
+      errors.username = 'username cannot be blank'
+    }
+    else {
+      if (values.main.username === 'xananax') {
         errors.username = 'username is already taken'
       } else if (values.username === 'admin') {
         errors.username = 'admin is not a valid username'
       }
-      setTimeout(resolve, 1000)
-    } else {
-      resolve()
     }
+    setTimeout(resolve, .500)
   }),
   transform: (form) => new Promise( (resolve) => {
-    const html = fakeRenderMarkdown(form.values.bio as string )
+    const html = fakeRenderMarkdown(form.values.about.texts.bio as string )
     const values = { ...form.values, html }
     const newForm = { ...form, values }
     resolve(newForm)
@@ -45,8 +48,7 @@ class App extends React.Component {
     values: {}
   }
   onSubmit = handle_form_submit( serialized =>
-    processForm(serialized)
-      .then( (validated) => this.setState( validated ) )
+    processForm(serialized).then( (validated) => this.setState( validated ) )
   )
   renderError( name: string ) {
     const { errors } = this.state
@@ -61,27 +63,33 @@ class App extends React.Component {
       <div>
         <h1>Test</h1>
         <form onSubmit={this.onSubmit}>
-          <div>
-            <input placeholder="username" type="text" name="username"/>
-            {this.renderError('username')}
-          </div>
-          <div>
-            <input placeholder="password" type="text" name="password"/>
-            {this.renderError('password')}
-          </div>
-          <div>
-            <input placeholder="confirm" type="text" name="password_confirm"/>
-            {this.renderError('password_confirm')}
-          </div>
-          <div>
-            <textarea placeholder="bio" name="bio"/>
-            {this.renderError('bio')}
-            <div dangerouslySetInnerHTML={{__html: values['html'] }}/>
-          </div>
+          <fieldset name="main">
+            <div>
+              <input placeholder="username" type="text" name="username"/>
+              { this.renderError('username') }
+            </div>
+            <div>
+              <input placeholder="password" type="text" name="password[]"/>
+              { this.renderError('password_0') }
+            </div>
+            <div>
+              <input placeholder="confirm" type="text" name="password[]"/>
+              { this.renderError('password_1') }
+            </div>
+          </fieldset>
+          <fieldset name="about">
+            <fieldset name="texts">
+              <div>
+                <textarea placeholder="bio" name="bio"/>
+                { this.renderError('bio') }
+                <div dangerouslySetInnerHTML={{__html: values['html'] }}/>
+              </div>
+            </fieldset>
+          </fieldset>
           <input type="submit" value="ok"/>
         </form>
         <pre>
-          {JSON.stringify(this.state, null, 2)}
+          { JSON.stringify(this.state, null, 2) }
         </pre>
       </div>
     )
