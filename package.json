@@ -1,6 +1,6 @@
 {
   "name": "@xananax/convenient",
-  "version": "0.0.966",
+  "version": "0.0.976",
   "description": "A bunch of disparate, but convenient functions",
   "license": "MIT",
   "main": "./dist/main.js",
