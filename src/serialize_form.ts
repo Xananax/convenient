@@ -1,4 +1,5 @@
 import { get_input_value, InputValue } from './get_input_value'
+// import { query_children } from './query_children'
 import is_dev from './is_dev';
 
 export interface SerializedFormValues
@@ -14,6 +15,10 @@ export interface SerializedForm
   ; target: string
   }
 
+export const get_form_controls = 
+  ( form:HTMLFormElement | HTMLFieldSetElement ) =>
+  { return form.elements
+  }
 /**
  * Extracts all the fields from an html form, gets all their values,
  * and returns the results.
@@ -36,7 +41,7 @@ export const serialize_form =
   ; const enctype = form.getAttribute('enctype') || ''
   ; const method = form.getAttribute('method') || ''
   ; const target = form.getAttribute('target') || ''
-  ; const values = serialize_inputs_collection(form.elements)
+  ; const values = serialize_inputs_collection(get_form_controls(form))
   ; const ret = 
     { name: formName
     , action
@@ -46,6 +51,26 @@ export const serialize_form =
     , target
     }
   ; return ret
+  }
+
+export const serialize_form_collection =
+  ( forms:NodeListOf<HTMLFormElement | HTMLFieldSetElement> ): SerializedFormValues | null =>
+  { const result = {}
+  ; const { length } = forms
+  ; let found = false
+  ; let i = 0
+  ; while(i < length)
+    { const form = forms[i++]
+    ; const name = form.getAttribute('name') || ''
+    ; const elements = get_form_controls(form)
+    ; const values = serialize_inputs_collection(elements)
+    ; if(values)
+      { found = true
+      ; setInData(name, values, result)
+      }
+    }
+  ; if(!found){ return null }
+  ; return result
   }
 
 const isArrayInput = 
@@ -62,14 +87,15 @@ const setInData =
   (inputName:string, value:any, data:any) =>
   { const { name, index, isArrayElement } = isArrayInput(inputName)
   ; if(isArrayElement)
-    { console.log(name, index)
-    ; data[name] = Array.isArray(data[name]) ? data[name] : []
+    { data[name] = Array.isArray(data[name]) ? data[name] : []
     ; if ( isNaN(index) )
       { if ( !(`push` in data[name]) )
         { if(is_dev)
           {
           ;console.warn('you\'ve used the key `'+name+'` as an object and as an array')
           }
+        ; const previous = data[name]
+        ; data[name] = [ previous, value ]
         }
         else
         {
@@ -117,11 +143,13 @@ export const serialize_inputs_collection =
       }
     }
   ; const inputs = nested ? not_fieldSets.filter( input => !fieldSets.some( fieldset => fieldset.contains(input) )) : not_fieldSets
+  ; const parents_fieldSets = nested ? fieldSets.filter( child => !fieldSets.some( fieldset => fieldset !== child && fieldset.contains(child) )) : []
   ; if(nested)
     {
-    ; fieldSets.forEach( 
+    ; parents_fieldSets.forEach( 
       ( fieldSet ) => 
-      { const result = serialize_inputs_collection(fieldSet.elements)
+      { const controls = get_form_controls(fieldSet)
+      ; const result = serialize_inputs_collection(controls)
       ; if(result)
         { setInData(fieldSet.name,result,data)
         ; empty = false
@@ -131,7 +159,7 @@ export const serialize_inputs_collection =
   ; inputs.forEach(
     ( input ) => 
     { const value = get_input_value(input)
-    ; if (value !== null)
+    ; if (value !== null && value !== "")
       { setInData(input.name,value,data)
       ; empty = false
       }
