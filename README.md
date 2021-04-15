@@ -1,4 +1,4 @@
-# Convenient
+# Convenients
 
 A bunch of functions that I keep re-using
 
